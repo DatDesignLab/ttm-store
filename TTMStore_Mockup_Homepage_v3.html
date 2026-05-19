@@ -1,0 +1,2252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TTM-Store — Homepage Redesign Mockup v3</title>
+<meta name="description" content="Table tennis equipment for serious players, clubs and beginners. Tibhar, Nexy, Maxwill, Neottec and more — shipped from Germany.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* TTM brand colors — sampled from current site */
+  --color-primary: #1f5d5e;        /* TTM teal */
+  --color-primary-dark: #134445;
+  --color-primary-light: #e8f1f0;
+  --color-accent: #e8622a;          /* CTA orange — for sale/limited only */
+  --color-bg: #ffffff;
+  --color-bg-alt: #f6f4ee;          /* warm off-white, matches current site */
+  --color-bg-dark: #0f2a2a;
+  --color-text: #1a2424;
+  --color-text-muted: #5b6b6b;
+  --color-border: #e3e1d9;
+  --color-white: #ffffff;
+  --color-sale: #c8392c;
+  --color-success: #2d8a4e;
+
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.75rem;
+  --text-hero: clamp(2.75rem, 6vw, 4.75rem);
+
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 5rem;
+  --space-section: clamp(4rem, 7vw, 6rem);
+
+  --container-max: 1280px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 36px rgba(0,0,0,0.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-primary);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.95rem 1.6rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-base);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+  text-transform: none;
+  white-space: nowrap;
+}
+.btn--primary { background: var(--color-accent); color: var(--color-white); }
+.btn--primary:hover { background: #d4541c; transform: translateY(-1px); }
+.btn--secondary { background: var(--color-white); color: var(--color-primary); border: 2px solid var(--color-white); }
+.btn--secondary:hover { background: transparent; color: var(--color-white); }
+.btn--ghost { background: transparent; color: var(--color-primary); border: 2px solid var(--color-primary); }
+.btn--ghost:hover { background: var(--color-primary); color: var(--color-white); }
+.btn--lg { padding: 1.15rem 2rem; font-size: var(--text-lg); }
+
+/* ═══════════════════════════════════════════════════════════════
+   ANNOUNCEMENT BAR
+   SHOPIFY: announcement-bar.liquid (Dawn standard)
+   ═══════════════════════════════════════════════════════════════ */
+.announce {
+  background: var(--color-bg-dark);
+  color: var(--color-white);
+  font-size: var(--text-xs);
+  padding: 0.6rem var(--space-md);
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+.announce__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.announce__item { display: inline-flex; align-items: center; gap: 0.4rem; }
+.announce__item svg { width: 14px; height: 14px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   HEADER (Dawn header.liquid)
+   ═══════════════════════════════════════════════════════════════ */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+}
+.header__utility {
+  background: var(--color-bg-alt);
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--text-xs);
+}
+.header__utility-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0.5rem var(--space-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.utility-nav {
+  display: flex;
+  gap: 1.25rem;
+  list-style: none;
+}
+.utility-nav a { color: var(--color-text-muted); font-weight: 500; }
+.utility-nav a:hover { color: var(--color-primary); }
+.utility-nav a.is-active { color: var(--color-primary); font-weight: 600; }
+.utility-meta { display: flex; gap: 1rem; color: var(--color-text-muted); }
+.utility-meta select {
+  border: none;
+  background: transparent;
+  font-size: var(--text-xs);
+  font-family: inherit;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.header__main {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--space-md);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-lg);
+}
+.header__logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-2xl);
+  color: var(--color-primary);
+  letter-spacing: 0.02em;
+}
+.header__logo span { color: var(--color-text); font-weight: 600; }
+.header__search {
+  display: flex;
+  align-items: center;
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 1rem;
+  max-width: 480px;
+  width: 100%;
+}
+.header__search svg { width: 18px; height: 18px; color: var(--color-text-muted); margin-right: 0.5rem; flex-shrink: 0; }
+.header__search input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-family: inherit;
+  font-size: var(--text-sm);
+  color: var(--color-text);
+}
+.header__actions { display: flex; align-items: center; gap: 1rem; }
+.header__icon {
+  position: relative;
+  display: inline-flex;
+  padding: 0.5rem;
+  color: var(--color-text);
+}
+.header__icon svg { width: 22px; height: 22px; }
+.header__badge {
+  position: absolute;
+  top: 0; right: 0;
+  background: var(--color-accent);
+  color: var(--color-white);
+  border-radius: 50%;
+  width: 18px; height: 18px;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  flex-direction: column;
+  gap: 4px;
+}
+.mobile-toggle span {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--color-text);
+}
+
+.header__nav {
+  background: var(--color-primary);
+}
+.header__nav-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+.main-nav {
+  display: flex;
+  list-style: none;
+  gap: 0;
+}
+.main-nav > li > a {
+  display: block;
+  padding: 1rem 1.25rem;
+  color: var(--color-white);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-family: var(--font-display);
+  transition: background 0.15s;
+}
+.main-nav > li > a:hover { background: var(--color-primary-dark); }
+.main-nav > li > a.is-featured { background: var(--color-accent); }
+.main-nav > li > a.is-featured:hover { background: #d4541c; }
+
+/* ═══════════════════════════════════════════════════════════════
+   HERO BANNER
+   SHOPIFY: image-banner.liquid OR custom hero.liquid
+   Schema: heading, subheading, button_label_1/link, button_label_2/link, image, overlay
+   ═══════════════════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  background: linear-gradient(135deg, #0f2a2a 0%, #1f5d5e 100%);
+  color: var(--color-white);
+  overflow: hidden;
+  min-height: 580px;
+  display: flex;
+  align-items: center;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 55%;
+  background-image: url('https://picsum.photos/seed/ttmplayer/1200/700');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.55;
+  mask-image: linear-gradient(to left, black 40%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to left, black 40%, transparent 100%);
+}
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-md);
+  width: 100%;
+}
+.hero__content { max-width: 620px; }
+.hero__eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1rem;
+}
+.hero h1 {
+  font-size: var(--text-hero);
+  line-height: 1;
+  margin-bottom: 1.25rem;
+  color: var(--color-white);
+}
+.hero h1 .accent { color: #ffb88a; display: block; }
+.hero__sub {
+  font-size: var(--text-lg);
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 2rem;
+  max-width: 520px;
+}
+.hero__ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+.hero__trust {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+.hero__trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.85);
+}
+.hero__trust-item svg { width: 18px; height: 18px; color: #ffb88a; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════════════════════════
+   SHOP BY CATEGORY
+   SHOPIFY: collection-list.liquid (Dawn standard) — 6 collections
+   ═══════════════════════════════════════════════════════════════ */
+.shop-by {
+  padding: var(--space-section) 0 var(--space-xl);
+}
+.shop-by__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.shop-by__header h2 {
+  font-size: var(--text-4xl);
+}
+.shop-by__view-all {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.shop-by__view-all:hover { gap: 0.7rem; }
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+.category-card {
+  position: relative;
+  display: block;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-bg-alt);
+  transition: transform 0.2s ease;
+}
+.category-card:hover { transform: translateY(-3px); }
+.category-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.category-card:hover img { transform: scale(1.04); }
+.category-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
+  display: flex;
+  align-items: end;
+  padding: 1.25rem;
+}
+.category-card__info { color: var(--color-white); }
+.category-card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+.category-card__count {
+  font-size: var(--text-xs);
+  opacity: 0.85;
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CAMPAIGN TILE GRID (replaces shop-by-category)
+   Custom section: campaign-tile-grid.liquid
+   ═══════════════════════════════════════════════════════════════ */
+.campaigns {
+  padding: var(--space-section) 0 var(--space-xl);
+}
+.campaign-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1rem;
+}
+.campaign-tile {
+  position: relative;
+  display: block;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-bg-alt);
+  transition: transform 0.2s ease;
+  min-height: 280px;
+}
+.campaign-tile:hover { transform: translateY(-3px); }
+
+/* TILE 1: large feature, spans full height left column */
+.campaign-tile--large {
+  grid-row: span 2;
+  min-height: 600px;
+}
+
+/* TILE 2: top-right image tile */
+.campaign-tile:not(.campaign-tile--large):not(.campaign-tile--solid) {
+  min-height: 290px;
+}
+
+.campaign-tile__media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.campaign-tile__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.campaign-tile:hover .campaign-tile__media img { transform: scale(1.04); }
+.campaign-tile__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 80%);
+}
+.campaign-tile__overlay--top {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 60%, transparent 100%);
+}
+
+.campaign-tile__content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.75rem;
+  color: var(--color-white);
+  z-index: 2;
+}
+.campaign-tile__content--top {
+  bottom: auto;
+  top: 0;
+}
+
+.campaign-tile__eyebrow {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.6rem;
+  color: var(--color-text);
+}
+.campaign-tile__eyebrow--light { color: rgba(255,255,255,0.85); }
+
+.campaign-tile__title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  margin-bottom: 0.5rem;
+  text-transform: none;
+  color: var(--color-text);
+}
+.campaign-tile__title--light { color: var(--color-white); }
+.campaign-tile--large .campaign-tile__title {
+  font-size: var(--text-3xl);
+}
+
+.campaign-tile__desc {
+  font-size: var(--text-sm);
+  margin-bottom: 1rem;
+  max-width: 420px;
+  color: var(--color-text-muted);
+}
+.campaign-tile__desc--light { color: rgba(255,255,255,0.85); }
+
+.campaign-tile__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text);
+  padding-bottom: 2px;
+  border-bottom: 2px solid var(--color-text);
+  transition: gap 0.2s;
+}
+.campaign-tile__cta--light {
+  color: var(--color-white);
+  border-bottom-color: var(--color-white);
+}
+.campaign-tile:hover .campaign-tile__cta { gap: 0.7rem; }
+
+/* SOLID TILES (no full-bleed image, image is a smaller element) */
+.campaign-tile--solid {
+  display: grid;
+  grid-template-columns: 1fr 130px;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.75rem;
+}
+.campaign-tile__solid-content {}
+.campaign-tile__solid-media {
+  align-self: center;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+}
+.campaign-tile__solid-media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+
+.usp-bar {
+  background: var(--color-bg-alt);
+  padding: var(--space-lg) 0;
+}
+.usp-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+}
+.usp-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+.usp-item__icon {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.usp-item__icon svg { width: 20px; height: 20px; }
+.usp-item__title {
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--color-text);
+}
+.usp-item__sub {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FEATURED PRODUCTS — BESTSELLERS
+   SHOPIFY: featured-collection.liquid (Dawn standard)
+   ═══════════════════════════════════════════════════════════════ */
+.featured {
+  padding: var(--space-section) 0;
+}
+.featured__header {
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.featured__header h2 {
+  font-size: var(--text-4xl);
+  margin-bottom: 0.75rem;
+}
+.featured__header p {
+  color: var(--color-text-muted);
+  font-size: var(--text-lg);
+}
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+}
+.product-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+.product-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.product-card__media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: var(--color-bg-alt);
+}
+.product-card__media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.product-card__ribbon {
+  position: absolute;
+  top: 0.75rem; left: 0.75rem;
+  background: var(--color-accent);
+  color: var(--color-white);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.5rem;
+  border-radius: 2px;
+}
+.product-card__ribbon--sale { background: var(--color-sale); }
+.product-card__ribbon--new { background: var(--color-primary); }
+.product-card__body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.product-card__brand {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+.product-card__title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-base);
+  text-transform: none;
+  letter-spacing: 0;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+  color: var(--color-text);
+}
+.product-card__meta {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+.product-card__chip {
+  font-size: 10px;
+  font-weight: 600;
+  background: var(--color-bg-alt);
+  color: var(--color-text-muted);
+  padding: 0.15rem 0.45rem;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.product-card__rating {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-bottom: 0.6rem;
+}
+.product-card__stars { color: #f5a623; font-size: var(--text-sm); letter-spacing: 1px; }
+.product-card__rating-count { font-size: var(--text-xs); color: var(--color-text-muted); }
+.product-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+.product-card__price-now {
+  font-weight: 700;
+  font-size: var(--text-lg);
+  color: var(--color-text);
+}
+.product-card__price-was {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+}
+.product-card__price-now.is-sale { color: var(--color-sale); }
+
+.featured__footer {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FIND YOUR GEAR (PLAYSTYLE QUIZ ENTRY)
+   SHOPIFY: image-with-text.liquid (Dawn standard) — text + image
+   This is the conversion play for beginners + intermediate
+   ═══════════════════════════════════════════════════════════════ */
+.find-gear {
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: var(--space-section) 0;
+}
+.find-gear__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+.find-gear__content {}
+.find-gear h2 {
+  font-size: var(--text-4xl);
+  color: var(--color-white);
+  margin-bottom: 1rem;
+}
+.find-gear p {
+  font-size: var(--text-lg);
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 2rem;
+  max-width: 480px;
+}
+.playstyle-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+  margin-bottom: 2rem;
+}
+.playstyle-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.playstyle-card:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.35);
+}
+.playstyle-card__label {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-white);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+.playstyle-card__sub {
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.find-gear__image {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+}
+.find-gear__image img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ═══════════════════════════════════════════════════════════════
+   BRAND UNIVERSES — photography-style brand tiles
+   Custom section: brand-universes.liquid
+   ═══════════════════════════════════════════════════════════════ */
+.brand-universes {
+  padding: var(--space-xl) 0 var(--space-section);
+}
+.brand-tile-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.85rem;
+}
+.brand-tile {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-bg-alt);
+  transition: transform 0.2s ease;
+}
+.brand-tile:hover { transform: translateY(-3px); }
+.brand-tile__media {
+  position: absolute;
+  inset: 0;
+}
+.brand-tile__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.brand-tile:hover .brand-tile__media img { transform: scale(1.05); }
+.brand-tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
+  z-index: 1;
+}
+.brand-tile__logo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1.85rem;
+  text-align: center;
+  z-index: 2;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-xl);
+  color: var(--color-white);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.brand-tile__count {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.85rem;
+  text-align: center;
+  z-index: 2;
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.75);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CATEGORY DEEP DIVE — RUBBERS BY PLAYSTYLE
+   SHOPIFY: featured-collection.liquid with tab variant OR multicolumn
+   ═══════════════════════════════════════════════════════════════ */
+.deep-dive {
+  padding: var(--space-section) 0;
+  background: var(--color-bg-alt);
+}
+.deep-dive__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.deep-dive__header h2 { font-size: var(--text-4xl); }
+.deep-dive__tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.deep-dive__tab {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.deep-dive__tab.is-active {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+}
+.deep-dive__tab:hover:not(.is-active) {
+  border-color: var(--color-primary);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CLUBS CTA
+   SHOPIFY: image-with-text.liquid (Dawn standard)
+   ═══════════════════════════════════════════════════════════════ */
+.clubs-cta {
+  padding: var(--space-section) 0;
+}
+.clubs-cta__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+.clubs-cta__image {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.clubs-cta__image img { width: 100%; height: 100%; object-fit: cover; }
+.clubs-cta h2 {
+  font-size: var(--text-4xl);
+  margin-bottom: 1rem;
+}
+.clubs-cta p {
+  color: var(--color-text-muted);
+  font-size: var(--text-lg);
+  margin-bottom: 1.5rem;
+}
+.clubs-cta__list {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+.clubs-cta__list li {
+  display: flex;
+  gap: 0.75rem;
+  align-items: start;
+  padding: 0.5rem 0;
+  font-size: var(--text-base);
+}
+.clubs-cta__list svg {
+  width: 20px; height: 20px;
+  color: var(--color-primary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.clubs-cta__buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* ═══════════════════════════════════════════════════════════════
+   TESTIMONIALS
+   SHOPIFY: multicolumn.liquid with custom CSS (Dawn standard)
+   ═══════════════════════════════════════════════════════════════ */
+.testimonials {
+  background: var(--color-bg-alt);
+  padding: var(--space-section) 0;
+}
+.testimonials__header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.testimonials__header h2 { font-size: var(--text-4xl); margin-bottom: 0.5rem; }
+.testimonials__header .rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+}
+.testimonials__header .rating .stars { color: #f5a623; letter-spacing: 2px; font-size: var(--text-lg); }
+.testimonials__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+.testimonial-card {
+  background: var(--color-white);
+  padding: 1.75rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+.testimonial-card__stars {
+  color: #f5a623;
+  font-size: var(--text-base);
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+.testimonial-card__quote {
+  font-size: var(--text-base);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+.testimonial-card__attr {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+.testimonial-card__avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--color-primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--color-primary);
+  font-size: var(--text-sm);
+  flex-shrink: 0;
+}
+.testimonial-card__name { font-weight: 600; font-size: var(--text-sm); }
+.testimonial-card__role { font-size: var(--text-xs); color: var(--color-text-muted); }
+
+/* ═══════════════════════════════════════════════════════════════
+   ABOUT / MEET THE TEAM
+   SHOPIFY: image-with-text.liquid (Dawn standard)
+   ═══════════════════════════════════════════════════════════════ */
+.about {
+  padding: var(--space-section) 0;
+}
+.about__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+.about__image {
+  aspect-ratio: 5 / 4;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.about__image img { width: 100%; height: 100%; object-fit: cover; }
+.about h2 { font-size: var(--text-4xl); margin-bottom: 1rem; }
+.about__lead {
+  font-size: var(--text-lg);
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+.about p {
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+}
+.about__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+.about__stat-num {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1;
+}
+.about__stat-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.25rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BLOG / EXPERT CONTENT — SEO PLAY
+   SHOPIFY: blog-posts.liquid (Dawn standard)
+   ═══════════════════════════════════════════════════════════════ */
+.blog {
+  background: var(--color-bg-alt);
+  padding: var(--space-section) 0;
+}
+.blog__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.blog__header h2 { font-size: var(--text-4xl); }
+.blog__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+.blog-card {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.blog-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.blog-card__media { aspect-ratio: 16 / 10; overflow: hidden; }
+.blog-card__media img { width: 100%; height: 100%; object-fit: cover; }
+.blog-card__body { padding: 1.5rem; }
+.blog-card__meta {
+  display: flex;
+  gap: 0.75rem;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+.blog-card__meta .tag { color: var(--color-primary); }
+.blog-card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--color-text);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NEWSLETTER
+   SHOPIFY: newsletter.liquid (Dawn standard)
+   ═══════════════════════════════════════════════════════════════ */
+.newsletter {
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: var(--space-section) 0;
+}
+.newsletter__inner {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+.newsletter__eyebrow {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+.newsletter h2 {
+  font-size: var(--text-4xl);
+  color: var(--color-white);
+  margin-bottom: 0.75rem;
+}
+.newsletter p {
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 2rem;
+  font-size: var(--text-lg);
+}
+.newsletter__form {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.newsletter__form input {
+  flex: 1;
+  padding: 0.95rem 1.25rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: var(--text-base);
+  outline: none;
+}
+.newsletter__small {
+  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.55);
+  margin-top: 1rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER
+   SHOPIFY: footer.liquid (Dawn standard)
+   ═══════════════════════════════════════════════════════════════ */
+.footer {
+  background: var(--color-bg-dark);
+  color: rgba(255,255,255,0.7);
+  padding: var(--space-2xl) 0 var(--space-lg);
+}
+.footer__top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: var(--space-xl);
+  padding-bottom: var(--space-xl);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.footer__brand h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  color: var(--color-white);
+  margin-bottom: 0.75rem;
+}
+.footer__brand p {
+  font-size: var(--text-sm);
+  margin-bottom: 1rem;
+  max-width: 320px;
+}
+.footer__social {
+  display: flex;
+  gap: 0.75rem;
+}
+.footer__social a {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s;
+}
+.footer__social a:hover { background: var(--color-primary); border-color: var(--color-primary); }
+.footer__social svg { width: 16px; height: 16px; color: var(--color-white); }
+
+.footer__col h4 {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-white);
+  margin-bottom: 1.25rem;
+  font-family: var(--font-body);
+}
+.footer__col ul { list-style: none; }
+.footer__col li { margin-bottom: 0.5rem; }
+.footer__col a { font-size: var(--text-sm); transition: color 0.15s; }
+.footer__col a:hover { color: var(--color-white); }
+
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: var(--space-lg);
+  font-size: var(--text-xs);
+}
+.footer__payments {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.footer__payment {
+  background: rgba(255,255,255,0.08);
+  padding: 0.35rem 0.6rem;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-white);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .header__main {
+    grid-template-columns: auto 1fr auto;
+    gap: 1rem;
+  }
+  .header__search { max-width: 100%; }
+  .product-grid { grid-template-columns: repeat(3, 1fr); }
+  .footer__top { grid-template-columns: 1fr 1fr; }
+  .brand-tile-grid { grid-template-columns: repeat(3, 1fr); }
+  .find-gear__grid, .clubs-cta__grid, .about__grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .campaign-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .campaign-tile--large {
+    grid-row: auto;
+    grid-column: span 2;
+    min-height: 400px;
+  }
+}
+
+@media (max-width: 767px) {
+  .header__utility { display: none; }
+  .header__main { grid-template-columns: auto 1fr auto; padding: 0.75rem var(--space-md); }
+  .header__search { display: none; }
+  .header__nav { display: none; }
+  .mobile-toggle { display: flex; }
+  .header__main { grid-template-columns: auto 1fr auto auto; gap: 0.5rem; }
+
+  .hero { min-height: 480px; }
+  .hero::before { width: 100%; opacity: 0.25; mask-image: none; -webkit-mask-image: none; }
+  .hero__sub { font-size: var(--text-base); }
+  .hero__ctas .btn { flex: 1; min-width: 0; }
+  .hero__trust { gap: 1rem; }
+
+  .category-grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+  .category-card__title { font-size: var(--text-lg); }
+
+  .campaign-grid {
+    grid-template-columns: 1fr;
+  }
+  .campaign-tile--large {
+    grid-column: span 1;
+    min-height: 380px;
+  }
+  .campaign-tile {
+    min-height: 240px;
+  }
+  .campaign-tile--solid {
+    grid-template-columns: 1fr 90px;
+    padding: 1.25rem;
+  }
+  .campaign-tile__title { font-size: var(--text-xl); }
+  .campaign-tile--large .campaign-tile__title { font-size: var(--text-2xl); }
+
+  .usp-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .usp-item__sub { display: none; }
+
+  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+  .product-card__body { padding: 0.75rem; }
+
+  .playstyle-grid { grid-template-columns: 1fr; }
+
+  .brand-tile-grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+  .brand-tile__logo { font-size: var(--text-base); }
+
+  .testimonials__grid, .blog__grid { grid-template-columns: 1fr; }
+
+  .about__stats { grid-template-columns: 1fr; gap: 1rem; }
+
+  .newsletter__form { flex-direction: column; }
+
+  .footer__top { grid-template-columns: 1fr; gap: 2rem; }
+
+  .shop-by__header h2, .featured__header h2, .find-gear h2, .clubs-cta h2,
+  .testimonials__header h2, .about h2, .blog__header h2, .newsletter h2 {
+    font-size: var(--text-3xl);
+  }
+}
+
+/* Mobile menu drawer (simple toggle demo) */
+body.menu-open .mobile-drawer { transform: translateX(0); }
+.mobile-drawer {
+  position: fixed;
+  top: 0; left: 0;
+  width: 85%; max-width: 360px;
+  height: 100vh;
+  background: var(--color-white);
+  box-shadow: var(--shadow-lg);
+  transform: translateX(-100%);
+  transition: transform 0.25s ease;
+  z-index: 200;
+  overflow-y: auto;
+}
+.mobile-drawer__header {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+}
+.mobile-drawer__close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.mobile-drawer__list {
+  list-style: none;
+  padding: 1rem 0;
+}
+.mobile-drawer__list li a {
+  display: block;
+  padding: 0.85rem 1.25rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-lg);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--color-border);
+}
+.mobile-drawer__list li:last-child a { border-bottom: none; }
+body.menu-open::before {
+  content: '';
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 150;
+}
+
+/* Mockup-only annotation labels */
+.section-tag {
+  position: absolute;
+  top: 0; left: 0;
+  background: #fff;
+  color: #000;
+  padding: 4px 10px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  z-index: 5;
+  border-bottom-right-radius: 4px;
+  border: 1px solid #ddd;
+  font-family: var(--font-body);
+  opacity: 0;
+  pointer-events: none;
+}
+body.show-tags .section-tag { opacity: 0.92; pointer-events: auto; }
+.section-tag-toggle {
+  position: fixed;
+  bottom: 16px; right: 16px;
+  z-index: 999;
+  background: #1a1a2e;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1rem;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+}
+
+[data-section] { position: relative; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     SHOPIFY: announcement-bar.liquid (Dawn)
+     Schema: text blocks (3), bg color
+     ═══════════════════════════════════════════ -->
+<div class="announce" data-section>
+  <span class="section-tag">Dawn: announcement-bar</span>
+  <div class="announce__inner">
+    <span class="announce__item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h18M3 12h18M3 16h18"/></svg>
+      Free shipping in DE/EU over 69€
+    </span>
+    <span class="announce__item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V8H6a2 2 0 0 1 0-4h12v4M4 6v12a2 2 0 0 0 2 2h14v-4M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
+      30-day returns
+    </span>
+    <span class="announce__item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Orders by 14:00 ship same day
+    </span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SHOPIFY: header.liquid (Dawn) — three rows:
+       Row 1: utility nav (custom blocks/links)
+       Row 2: logo + predictive search + account/cart
+       Row 3: main nav (header menu setting)
+     Predictive search: built into Dawn
+     ═══════════════════════════════════════════ -->
+<header class="header" data-section>
+  <span class="section-tag">Dawn: header (utility + main + nav)</span>
+
+  <div class="header__utility">
+    <div class="header__utility-inner">
+      <ul class="utility-nav">
+        <li><a href="#" class="is-active">Beginners</a></li>
+        <li><a href="#">Pro Players</a></li>
+        <li><a href="#">Deals</a></li>
+      </ul>
+      <div class="utility-meta">
+        <select aria-label="Region">
+          <option>🇩🇪 Deutschland / EUR</option>
+          <option>🇦🇹 Österreich / EUR</option>
+          <option>🇨🇭 Schweiz / CHF</option>
+          <option>🌍 International / EUR</option>
+        </select>
+        <a href="#">My Account</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="header__main">
+    <button class="mobile-toggle" aria-label="Open menu" onclick="document.body.classList.toggle('menu-open')">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="#" class="header__logo">TTM<span>-Store</span></a>
+    <div class="header__search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="search" placeholder="Search blades, rubbers, brands...">
+    </div>
+    <div class="header__actions">
+      <a href="#" class="header__icon" aria-label="Account">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <a href="#" class="header__icon" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        <span class="header__badge">2</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="header__nav">
+    <div class="header__nav-inner">
+      <ul class="main-nav">
+        <li><a href="#">Blades</a></li>
+        <li><a href="#">Rubbers</a></li>
+        <li><a href="#">Pre-Assembled</a></li>
+        <li><a href="#">Balls</a></li>
+        <li><a href="#">Clothing</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#">Brands</a></li>
+        <li style="margin-left: auto;"><a href="#" class="is-featured">Sale</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile drawer (toggled by hamburger) -->
+<div class="mobile-drawer">
+  <div class="mobile-drawer__header">
+    <span style="font-family: var(--font-display); font-weight: 800; font-size: var(--text-xl); color: var(--color-primary);">TTM-Store</span>
+    <button class="mobile-drawer__close" onclick="document.body.classList.remove('menu-open')">×</button>
+  </div>
+  <ul class="mobile-drawer__list">
+    <li><a href="#">Blades</a></li>
+    <li><a href="#">Rubbers</a></li>
+    <li><a href="#">Pre-Assembled</a></li>
+    <li><a href="#">Balls</a></li>
+    <li><a href="#">Clothing</a></li>
+    <li><a href="#">Accessories</a></li>
+    <li><a href="#">Brands</a></li>
+    <li><a href="#" style="color: var(--color-accent);">Sale</a></li>
+    <li><a href="#">Beginners</a></li>
+  </ul>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SHOPIFY: image-banner.liquid (Dawn) OR custom hero
+     Schema settings:
+       - image (image_picker)
+       - heading (text, H1)
+       - subheading (text)
+       - button_1: label + link (primary, orange)
+       - button_2: label + link (secondary)
+       - trust_points: 3x text blocks
+       - overlay (range, default 40%)
+     SEO: This is the page H1 — important for ranking
+     ═══════════════════════════════════════════ -->
+<section class="hero" data-section>
+  <span class="section-tag">Dawn: image-banner (custom hero variant)</span>
+  <div class="hero__inner">
+    <div class="hero__content">
+      <div class="hero__eyebrow">Table tennis specialists since 2012</div>
+      <h1>
+        Equipment built for
+        <span class="accent">how you actually play.</span>
+      </h1>
+      <p class="hero__sub">
+        Blades, rubbers and pre-assembled rackets from Tibhar, Nexy, Maxwill and more.
+        Hand-picked by players who compete, not algorithms.
+      </p>
+      <div class="hero__ctas">
+        <a href="#" class="btn btn--primary btn--lg">Shop Rubbers</a>
+        <a href="#" class="btn btn--secondary btn--lg">Browse all Blades</a>
+      </div>
+      <div class="hero__trust">
+        <div class="hero__trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          83 products in stock
+        </div>
+        <div class="hero__trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Ships from Germany
+        </div>
+        <div class="hero__trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          4.9/5 from 340+ reviews
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SHOPIFY: custom section "campaign-tile-grid.liquid"
+     This is a NEW section we add to /sections/ folder.
+     Dawn-safe: lives in custom file, never overwritten by Dawn updates.
+     Schema: 4 tile blocks, each with image, eyebrow, heading, cta_label, cta_link, accent_color
+     ═══════════════════════════════════════════ -->
+<section class="campaigns" data-section>
+  <span class="section-tag">Custom: campaign-tile-grid.liquid</span>
+  <div class="container">
+    <div class="shop-by__header">
+      <div>
+        <div class="eyebrow">This month at TTM</div>
+        <h2>Featured collections.</h2>
+      </div>
+      <a href="#" class="shop-by__view-all">Browse all products →</a>
+    </div>
+    <div class="campaign-grid">
+
+      <!-- TILE 1: Large feature tile (Tibhar Evolution campaign) -->
+      <a href="#" class="campaign-tile campaign-tile--large">
+        <div class="campaign-tile__media">
+          <img src="https://picsum.photos/seed/tibhar-evo/800/600" alt="">
+          <div class="campaign-tile__overlay"></div>
+        </div>
+        <div class="campaign-tile__content">
+          <div class="campaign-tile__eyebrow">Tibhar · Evolution Series</div>
+          <h3 class="campaign-tile__title">The rubber line trusted by tournament players.</h3>
+          <p class="campaign-tile__desc">FX-P, MX-P, EL-P and EL-S. Six sponge hardnesses, one consistent topsheet.</p>
+          <span class="campaign-tile__cta">Shop the series</span>
+        </div>
+      </a>
+
+      <!-- TILE 2: New arrivals -->
+      <a href="#" class="campaign-tile">
+        <div class="campaign-tile__media">
+          <img src="https://picsum.photos/seed/new-arrivals/600/400" alt="">
+          <div class="campaign-tile__overlay campaign-tile__overlay--top"></div>
+        </div>
+        <div class="campaign-tile__content campaign-tile__content--top">
+          <div class="campaign-tile__eyebrow campaign-tile__eyebrow--light">Just landed</div>
+          <h3 class="campaign-tile__title campaign-tile__title--light">New blades from Resonant.</h3>
+          <span class="campaign-tile__cta campaign-tile__cta--light">Shop new arrivals →</span>
+        </div>
+      </a>
+
+      <!-- TILE 3: Defensive setups -->
+      <a href="#" class="campaign-tile campaign-tile--solid" style="background: #1f5d5e;">
+        <div class="campaign-tile__solid-content">
+          <div class="campaign-tile__eyebrow campaign-tile__eyebrow--light">For chopper specialists</div>
+          <h3 class="campaign-tile__title campaign-tile__title--light">Defensive setups.</h3>
+          <p class="campaign-tile__desc campaign-tile__desc--light">Long pips, defensive blades, DEF-rated rubbers. The hardest gear to find anywhere else.</p>
+          <span class="campaign-tile__cta campaign-tile__cta--light">Shop defensive →</span>
+        </div>
+        <div class="campaign-tile__solid-media">
+          <img src="https://picsum.photos/seed/defensive/400/400" alt="">
+        </div>
+      </a>
+
+      <!-- TILE 4: Beginner kits -->
+      <a href="#" class="campaign-tile campaign-tile--solid" style="background: #f6f4ee;">
+        <div class="campaign-tile__solid-content">
+          <div class="campaign-tile__eyebrow">First racket?</div>
+          <h3 class="campaign-tile__title">Beginner kits from 49€.</h3>
+          <p class="campaign-tile__desc">Pre-assembled rackets that won't hold you back as you improve.</p>
+          <span class="campaign-tile__cta">Shop beginner kits →</span>
+        </div>
+        <div class="campaign-tile__solid-media">
+          <img src="https://picsum.photos/seed/beginner-kit/400/400" alt="">
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SHOPIFY: multicolumn.liquid (Dawn) — 4 columns
+     Each block: image (use icon SVG), heading, text
+     Setting: bg color = alt
+     ═══════════════════════════════════════════ -->
+<section class="usp-bar" data-section>
+  <span class="section-tag">Dawn: multicolumn (4 USPs)</span>
+  <div class="container">
+    <div class="usp-grid">
+      <div class="usp-item">
+        <div class="usp-item__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+        </div>
+        <div>
+          <div class="usp-item__title">Free shipping over 69€</div>
+          <div class="usp-item__sub">Germany + EU</div>
+        </div>
+      </div>
+      <div class="usp-item">
+        <div class="usp-item__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <div>
+          <div class="usp-item__title">30-day returns</div>
+          <div class="usp-item__sub">No questions asked</div>
+        </div>
+      </div>
+      <div class="usp-item">
+        <div class="usp-item__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-6 0v4M5 9h14l1 12H4L5 9Z"/></svg>
+        </div>
+        <div>
+          <div class="usp-item__title">Same-day dispatch</div>
+          <div class="usp-item__sub">Order by 14:00</div>
+        </div>
+      </div>
+      <div class="usp-item">
+        <div class="usp-item__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 9.5 8 10 4.5-.5 8-5 8-10V6l-8-4Z"/></svg>
+        </div>
+        <div>
+          <div class="usp-item__title">Expert advice</div>
+          <div class="usp-item__sub">Real players, not bots</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SHOPIFY: featured-collection.liquid (Dawn)
+     Settings: collection picker = "Bestsellers"
+     Layout: 4 columns desktop, 2 mobile
+     Card uses Dawn product-card snippet with custom
+     metafield chips below title (Group: Holz / Belag specs)
+     ═══════════════════════════════════════════ -->
+<section class="featured" data-section>
+  <span class="section-tag">Dawn: featured-collection (Bestsellers)</span>
+  <div class="container">
+    <div class="featured__header">
+      <div class="eyebrow">This month's bestsellers</div>
+      <h2>What our players are buying</h2>
+      <p>Tournament-grade kit chosen by real customers, ranked by what actually ships out the door.</p>
+    </div>
+    <div class="product-grid">
+
+      <a href="#" class="product-card">
+        <div class="product-card__media">
+          <span class="product-card__ribbon product-card__ribbon--sale">-32%</span>
+          <img src="https://picsum.photos/seed/rubber1/400/400" alt="">
+        </div>
+        <div class="product-card__body">
+          <div class="product-card__brand">Tibhar</div>
+          <div class="product-card__title">Evolution FX-P Rubber</div>
+          <div class="product-card__meta">
+            <span class="product-card__chip">OFF</span>
+            <span class="product-card__chip">Med-Hard</span>
+            <span class="product-card__chip">ITTF</span>
+          </div>
+          <div class="product-card__rating">
+            <span class="product-card__stars">★★★★★</span>
+            <span class="product-card__rating-count">(127)</span>
+          </div>
+          <div class="product-card__price">
+            <span class="product-card__price-now is-sale">28.90 €</span>
+            <span class="product-card__price-was">42.50 €</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="product-card">
+        <div class="product-card__media">
+          <span class="product-card__ribbon product-card__ribbon--new">NEW</span>
+          <img src="https://picsum.photos/seed/blade1/400/400" alt="">
+        </div>
+        <div class="product-card__body">
+          <div class="product-card__brand">Resonant</div>
+          <div class="product-card__title">RX-7 Carbon Blade</div>
+          <div class="product-card__meta">
+            <span class="product-card__chip">OFF+</span>
+            <span class="product-card__chip">7 plies</span>
+            <span class="product-card__chip">ALC</span>
+          </div>
+          <div class="product-card__rating">
+            <span class="product-card__stars">★★★★★</span>
+            <span class="product-card__rating-count">(43)</span>
+          </div>
+          <div class="product-card__price">
+            <span class="product-card__price-now">189.00 €</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="product-card">
+        <div class="product-card__media">
+          <span class="product-card__ribbon">BESTSELLER</span>
+          <img src="https://picsum.photos/seed/blade2/400/400" alt="">
+        </div>
+        <div class="product-card__body">
+          <div class="product-card__brand">Nexy</div>
+          <div class="product-card__title">Etika Pro H Blade</div>
+          <div class="product-card__meta">
+            <span class="product-card__chip">ALL+</span>
+            <span class="product-card__chip">5 plies</span>
+            <span class="product-card__chip">Limba</span>
+          </div>
+          <div class="product-card__rating">
+            <span class="product-card__stars">★★★★★</span>
+            <span class="product-card__rating-count">(89)</span>
+          </div>
+          <div class="product-card__price">
+            <span class="product-card__price-now">95.00 €</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="product-card">
+        <div class="product-card__media">
+          <img src="https://picsum.photos/seed/rubber2/400/400" alt="">
+        </div>
+        <div class="product-card__body">
+          <div class="product-card__brand">Maxwill</div>
+          <div class="product-card__title">M1 Spin Rubber (Tacky)</div>
+          <div class="product-card__meta">
+            <span class="product-card__chip">OFF</span>
+            <span class="product-card__chip">Tacky</span>
+            <span class="product-card__chip">47.5°</span>
+          </div>
+          <div class="product-card__rating">
+            <span class="product-card__stars">★★★★☆</span>
+            <span class="product-card__rating-count">(62)</span>
+          </div>
+          <div class="product-card__price">
+            <span class="product-card__price-now">34.90 €</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+    <div class="featured__footer">
+      <a href="#" class="btn btn--ghost btn--lg">Shop all bestsellers</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SHOPIFY: image-with-text.liquid (Dawn)
+     Custom blocks for the 3 playstyle cards
+     Each playstyle links to its sub-collection
+     (Offensive / All-round / Defensive — from Phase 1 doc)
+     ═══════════════════════════════════════════ -->
+<section class="find-gear" data-section>
+  <span class="section-tag" style="background:#fff;">Dawn: image-with-text (custom links)</span>
+  <div class="container">
+    <div class="find-gear__grid">
+      <div class="find-gear__content">
+        <div class="eyebrow" style="color: #ffb88a;">Not sure what to buy?</div>
+        <h2>Shop by how you play.</h2>
+        <p>Aggressive topspin? Steady all-rounder? Defensive chopper? Pick a style and we'll filter the catalogue to gear that actually suits your game.</p>
+        <div class="playstyle-grid">
+          <a href="#" class="playstyle-card">
+            <div class="playstyle-card__label">OFF</div>
+            <div class="playstyle-card__sub">Offensive</div>
+          </a>
+          <a href="#" class="playstyle-card">
+            <div class="playstyle-card__label">ALL</div>
+            <div class="playstyle-card__sub">All-Round</div>
+          </a>
+          <a href="#" class="playstyle-card">
+            <div class="playstyle-card__label">DEF</div>
+            <div class="playstyle-card__sub">Defensive</div>
+          </a>
+        </div>
+      </div>
+      <div class="find-gear__image">
+        <img src="https://picsum.photos/seed/closeup/600/450" alt="Player executing a topspin forehand">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SHOPIFY: custom section "brand-universes.liquid"
+     Photography-style brand tiles (logo + lifestyle image + name).
+     Dawn-safe: lives in /sections/ as a new file. Schema = 6 brand blocks,
+     each with image (image_picker), logo (image_picker), name (text), link (url).
+     Data source: Brand metaobject from Phase 1 doc.
+     ═══════════════════════════════════════════ -->
+<section class="brand-universes" data-section>
+  <span class="section-tag">Custom: brand-universes.liquid</span>
+  <div class="container">
+    <div class="shop-by__header">
+      <div>
+        <div class="eyebrow">Shop by brand</div>
+        <h2>Brand universes.</h2>
+      </div>
+      <a href="#" class="shop-by__view-all">All brands →</a>
+    </div>
+    <div class="brand-tile-grid">
+      <a href="#" class="brand-tile">
+        <div class="brand-tile__media">
+          <img src="https://picsum.photos/seed/tibhar-univ/400/500" alt="">
+        </div>
+        <div class="brand-tile__logo">TIBHAR</div>
+        <div class="brand-tile__count">56 products</div>
+      </a>
+      <a href="#" class="brand-tile">
+        <div class="brand-tile__media">
+          <img src="https://picsum.photos/seed/nexy-univ/400/500" alt="">
+        </div>
+        <div class="brand-tile__logo">NEXY</div>
+        <div class="brand-tile__count">15 products</div>
+      </a>
+      <a href="#" class="brand-tile">
+        <div class="brand-tile__media">
+          <img src="https://picsum.photos/seed/maxwill-univ/400/500" alt="">
+        </div>
+        <div class="brand-tile__logo">MAXWILL</div>
+        <div class="brand-tile__count">5 products</div>
+      </a>
+      <a href="#" class="brand-tile">
+        <div class="brand-tile__media">
+          <img src="https://picsum.photos/seed/neottec-univ/400/500" alt="">
+        </div>
+        <div class="brand-tile__logo">NEOTTEC</div>
+        <div class="brand-tile__count">3 products</div>
+      </a>
+      <a href="#" class="brand-tile">
+        <div class="brand-tile__media">
+          <img src="https://picsum.photos/seed/resonant-univ/400/500" alt="">
+        </div>
+        <div class="brand-tile__logo">RESONANT</div>
+        <div class="brand-tile__count">2 products</div>
+      </a>
+      <a href="#" class="brand-tile">
+        <div class="brand-tile__media">
+          <img src="https://picsum.photos/seed/ttm-univ/400/500" alt="">
+        </div>
+        <div class="brand-tile__logo">TTM</div>
+        <div class="brand-tile__count">2 products</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SHOPIFY: featured-collection.liquid (Dawn) ×2
+     Use Dawn "Featured collection" twice: one for
+     beginner picks, one for pro picks.
+     Switch via "Spielerlevel" metafield filter on collection.
+     ═══════════════════════════════════════════ -->
+<section class="deep-dive" data-section>
+  <span class="section-tag">Dawn: featured-collection (2 variants with tab-switch UI)</span>
+  <div class="container">
+    <div class="deep-dive__header">
+      <div>
+        <div class="eyebrow">Curated by skill level</div>
+        <h2>The right kit for your level.</h2>
+      </div>
+      <div class="deep-dive__tabs">
+        <button class="deep-dive__tab is-active">Beginner</button>
+        <button class="deep-dive__tab">Intermediate</button>
+        <button class="deep-dive__tab">Pro / Tournament</button>
+      </div>
+    </div>
+    <div class="product-grid">
+
+      <a href="#" class="product-card">
+        <div class="product-card__media">
+          <span class="product-card__ribbon">STARTER PICK</span>
+          <img src="https://picsum.photos/seed/beg1/400/400" alt="">
+        </div>
+        <div class="product-card__body">
+          <div class="product-card__brand">Maxwill</div>
+          <div class="product-card__title">Tryout Pre-Assembled Kit</div>
+          <div class="product-card__meta">
+            <span class="product-card__chip">Beginner</span>
+            <span class="product-card__chip">ALL</span>
+            <span class="product-card__chip">Ready to play</span>
+          </div>
+          <div class="product-card__rating">
+            <span class="product-card__stars">★★★★★</span>
+            <span class="product-card__rating-count">(54)</span>
+          </div>
+          <div class="product-card__price">
+            <span class="product-card__price-now">49.90 €</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="product-card">
+        <div class="product-card__media">
+          <img src="https://picsum.photos/seed/beg2/400/400" alt="">
+        </div>
+        <div class="product-card__body">
+          <div class="product-card__brand">Tibhar</div>
+          <div class="product-card__title">Rapid Soft Rubber</div>
+          <div class="product-card__meta">
+            <span class="product-card__chip">Beginner</span>
+            <span class="product-card__chip">ALL</span>
+            <span class="product-card__chip">Soft</span>
+          </div>
+          <div class="product-card__rating">
+            <span class="product-card__stars">★★★★☆</span>
+            <span class="product-card__rating-count">(38)</span>
+          </div>
+          <div class="product-card__price">
+            <span class="product-card__price-now">18.50 €</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="product-card">
+        <div class="product-card__media">
+          <img src="https://picsum.photos/seed/beg3/400/400" alt="">
+        </div>
+        <div class="product-card__body">
+          <div class="product-card__brand">Nexy</div>
+          <div class="product-card__title">Allround Carbon Blade</div>
+          <div class="product-card__meta">
+            <span class="product-card__chip">Beginner</span>
+            <span class="product-card__chip">ALL</span>
+            <span class="product-card__chip">5 plies</span>
+          </div>
+          <div class="product-card__rating">
+            <span class="product-card__stars">★★★★★</span>
+            <span class="product-card__rating-count">(71)</span>
+          </div>
+          <div class="product-card__price">
+            <span class="product-card__price-now">59.00 €</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="product-card">
+        <div class="product-card__media">
+          <img src="https://picsum.photos/seed/beg4/400/400" alt="">
+        </div>
+        <div class="product-card__body">
+          <div class="product-card__brand">TTM</div>
+          <div class="product-card__title">3-Star Training Balls (72)</div>
+          <div class="product-card__meta">
+            <span class="product-card__chip">3-Star</span>
+            <span class="product-card__chip">40+</span>
+            <span class="product-card__chip">White</span>
+          </div>
+          <div class="product-card__rating">
+            <span class="product-card__stars">★★★★★</span>
+            <span class="product-card__rating-count">(112)</span>
+          </div>
+          <div class="product-card__price">
+            <span class="product-card__price-now">22.90 €</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SHOPIFY: multicolumn.liquid (Dawn) — 3 cards
+     Each block: text (quote), heading (name), text (role)
+     Source: pull from product reviews app (Judge.me / Loox)
+     or hardcode in section schema
+     ═══════════════════════════════════════════ -->
+<section class="testimonials" data-section>
+  <span class="section-tag">Dawn: multicolumn (reviews)</span>
+  <div class="container">
+    <div class="testimonials__header">
+      <div class="eyebrow">What customers say</div>
+      <h2>4.9 out of 5, across 340 reviews</h2>
+      <div class="rating">
+        <span class="stars">★★★★★</span>
+        <span>Independently verified by Trusted Shops</span>
+      </div>
+    </div>
+    <div class="testimonials__grid">
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p class="testimonial-card__quote">Ordered a Tibhar blade on Tuesday, arrived Wednesday in perfect packaging. Phone advice on rubber choice was actually useful, not a sales pitch.</p>
+        <div class="testimonial-card__attr">
+          <div class="testimonial-card__avatar">LM</div>
+          <div>
+            <div class="testimonial-card__name">Lukas M.</div>
+            <div class="testimonial-card__role">Bremen, verified buyer</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p class="testimonial-card__quote">Needed new rubbers before a tournament on Sunday. Ordered Friday morning, played with them Saturday. Specs on the product page matched exactly what I got.</p>
+        <div class="testimonial-card__attr">
+          <div class="testimonial-card__avatar">SG</div>
+          <div>
+            <div class="testimonial-card__name">Stefan G.</div>
+            <div class="testimonial-card__role">Munich, verified buyer</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p class="testimonial-card__quote">First time buying a serious blade and I had no clue what I needed. Damir replied to my email same day with three options and why each one would suit me. Bought the middle one, perfect.</p>
+        <div class="testimonial-card__attr">
+          <div class="testimonial-card__avatar">JS</div>
+          <div>
+            <div class="testimonial-card__name">Julia S.</div>
+            <div class="testimonial-card__role">Leipzig, verified buyer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SHOPIFY: image-with-text.liquid (Dawn)
+     Strong "About" block — Lukas + Damir trust play
+     ═══════════════════════════════════════════ -->
+<section class="about" data-section>
+  <span class="section-tag">Dawn: image-with-text</span>
+  <div class="container">
+    <div class="about__grid">
+      <div class="about__image">
+        <img src="https://picsum.photos/seed/team/600/480" alt="Lukas and Damir at the TTM-Store warehouse">
+      </div>
+      <div>
+        <div class="eyebrow">Meet the team</div>
+        <h2>We're Lukas &amp; Damir. Players first, shopkeepers second.</h2>
+        <p class="about__lead">We've each been playing competitively for over 15 years. We started TTM-Store because the gear we wanted was either out of stock, badly described, or sold by people who'd never struck a ball.</p>
+        <p>Every product on this site is something one of us has played with or vetted with players we trust. If you call or email asking what to buy, you're talking to an actual player, not a call centre.</p>
+        <div class="about__stats">
+          <div>
+            <div class="about__stat-num">12+</div>
+            <div class="about__stat-label">years in business</div>
+          </div>
+          <div>
+            <div class="about__stat-num">340+</div>
+            <div class="about__stat-label">verified reviews</div>
+          </div>
+          <div>
+            <div class="about__stat-num">8,500+</div>
+            <div class="about__stat-label">orders shipped</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="#" class="btn btn--ghost">About TTM-Store</a>
+          <a href="#" class="btn btn--ghost">Contact us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SHOPIFY: newsletter.liquid (Dawn)
+     Connects to Shopify Email or Klaviyo via tag
+     ═══════════════════════════════════════════ -->
+<section class="newsletter" data-section>
+  <span class="section-tag" style="background:#fff;">Dawn: newsletter</span>
+  <div class="container">
+    <div class="newsletter__inner">
+      <div class="newsletter__eyebrow">Join the TTM-Store Club</div>
+      <h2>10% off your first order. Plus restock alerts.</h2>
+      <p>Pro-level buying advice, deal previews and new arrivals straight to your inbox. No spam, never daily.</p>
+      <form class="newsletter__form" onsubmit="event.preventDefault()">
+        <input type="email" placeholder="Your email address" required>
+        <button type="submit" class="btn btn--primary">Get my code</button>
+      </form>
+      <p class="newsletter__small">By signing up you agree to our privacy policy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SHOPIFY: footer.liquid (Dawn)
+     Standard Dawn footer with 4 menu blocks +
+     payment icons + social
+     ═══════════════════════════════════════════ -->
+<footer class="footer" data-section>
+  <span class="section-tag">Dawn: footer</span>
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <h3>TTM-Store</h3>
+        <p>Table tennis equipment for serious players, clubs and beginners. Shipped from Germany since 2012.</p>
+        <div class="footer__social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.4A4 4 0 1 1 12.6 8 4 4 0 0 1 16 11.4ZM17.5 6.5h.01"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3Z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.5 7c-.2-2-1.6-3.4-3.6-3.6C16.3 3 12 3 12 3s-4.3 0-6.9.4C3.1 3.6 1.7 5 1.5 7 1.1 9.6 1.1 12 1.1 12s0 2.4.4 5c.2 2 1.6 3.4 3.6 3.6 2.6.4 6.9.4 6.9.4s4.3 0 6.9-.4c2-.2 3.4-1.6 3.6-3.6.4-2.6.4-5 .4-5s0-2.4-.4-5Z"/><path d="m10 15 5-3-5-3v6Z" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <h4>About TTM</h4>
+        <ul>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Customer Service</h4>
+        <ul>
+          <li><a href="#">Shipping &amp; delivery</a></li>
+          <li><a href="#">Returns &amp; complaints</a></li>
+          <li><a href="#">Payment methods</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Gift cards</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Terms (AGB)</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Right of withdrawal</a></li>
+          <li><a href="#">Imprint</a></li>
+          <li><a href="#">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div>© 2026 TTM-Store. All rights reserved.</div>
+      <div class="footer__payments">
+        <span class="footer__payment">Visa</span>
+        <span class="footer__payment">MC</span>
+        <span class="footer__payment">PayPal</span>
+        <span class="footer__payment">Klarna</span>
+        <span class="footer__payment">SOFORT</span>
+        <span class="footer__payment">SEPA</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="section-tag-toggle" onclick="document.body.classList.toggle('show-tags')">
+  Toggle section labels
+</button>
+
+<script>
+  // Simple tab switcher on the "by skill level" section
+  document.querySelectorAll('.deep-dive__tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.deep-dive__tab').forEach(t => t.classList.remove('is-active'));
+      tab.classList.add('is-active');
+    });
+  });
+
+  // Esc closes mobile menu
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.body.classList.remove('menu-open');
+  });
+</script>
+
+</body>
+</html>
