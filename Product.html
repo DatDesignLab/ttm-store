@@ -1,0 +1,2270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TTM-Store — Product Page Templates (7 types)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --color-primary: #1f5d5e;
+  --color-primary-dark: #134445;
+  --color-primary-light: #e8f1f0;
+  --color-accent: #e8622a;
+  --color-bg: #ffffff;
+  --color-bg-alt: #f6f4ee;
+  --color-bg-dark: #0f2a2a;
+  --color-text: #1a2424;
+  --color-text-muted: #5b6b6b;
+  --color-border: #e3e1d9;
+  --color-white: #ffffff;
+  --color-sale: #c8392c;
+  --color-success: #2d8a4e;
+
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.5rem;
+
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 5rem;
+
+  --container-max: 1280px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-primary);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.95rem 1.6rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-base);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+  text-transform: none;
+  white-space: nowrap;
+}
+.btn--primary { background: var(--color-accent); color: var(--color-white); }
+.btn--primary:hover { background: #d4541c; transform: translateY(-1px); }
+.btn--ghost { background: transparent; color: var(--color-primary); border: 2px solid var(--color-primary); }
+.btn--ghost:hover { background: var(--color-primary); color: var(--color-white); }
+.btn--lg { padding: 1.15rem 2rem; font-size: var(--text-lg); }
+.btn--full { width: 100%; }
+
+/* ═══════════════════════════════════════════════════════════════
+   TEMPLATE SWITCHER (mockup-only navigation aid)
+   ═══════════════════════════════════════════════════════════════ */
+.template-switcher {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: var(--color-bg-dark);
+  border-bottom: 3px solid var(--color-accent);
+  padding: 0.6rem var(--space-md);
+}
+.template-switcher__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.template-switcher__label {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.6);
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+.template-switcher__tabs {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+.template-switcher__tab {
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.75);
+  border: 1px solid rgba(255,255,255,0.1);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  padding: 0.35rem 0.7rem;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.template-switcher__tab:hover {
+  background: rgba(255,255,255,0.12);
+  color: var(--color-white);
+}
+.template-switcher__tab.is-active {
+  background: var(--color-accent);
+  color: var(--color-white);
+  border-color: var(--color-accent);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MINI HEADER (so each template feels in-context)
+   ═══════════════════════════════════════════════════════════════ */
+.mini-header {
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.85rem var(--space-md);
+}
+.mini-header__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mini-header__logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-xl);
+  color: var(--color-primary);
+  letter-spacing: 0.02em;
+}
+.mini-header__logo span { color: var(--color-text); font-weight: 600; }
+.mini-header__nav {
+  display: flex;
+  gap: 1.25rem;
+  list-style: none;
+}
+.mini-header__nav a {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TEMPLATE SECTION WRAPPER
+   ═══════════════════════════════════════════════════════════════ */
+.template {
+  display: none;
+  padding-bottom: var(--space-2xl);
+  border-bottom: 8px solid var(--color-bg-alt);
+}
+.template.is-active { display: block; }
+
+.template-label {
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: var(--space-md) var(--space-md);
+}
+.template-label__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.template-label__title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.template-label__type {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.template-label__en {
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.7);
+  font-weight: 500;
+}
+.template-label__shopify {
+  font-size: var(--text-xs);
+  background: rgba(0,0,0,0.25);
+  padding: 0.35rem 0.7rem;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.05em;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BREADCRUMBS
+   ═══════════════════════════════════════════════════════════════ */
+.breadcrumbs {
+  padding: 1rem 0;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  background: var(--color-bg-alt);
+}
+.breadcrumbs__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.breadcrumbs a { color: var(--color-text-muted); }
+.breadcrumbs a:hover { color: var(--color-primary); }
+.breadcrumbs .sep { color: var(--color-border); }
+.breadcrumbs .current { color: var(--color-text); font-weight: 500; }
+
+/* ═══════════════════════════════════════════════════════════════
+   PRODUCT MAIN GRID (Dawn main-product structure)
+   ═══════════════════════════════════════════════════════════════ */
+.product {
+  padding: var(--space-xl) 0;
+}
+.product__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--space-2xl);
+  align-items: start;
+}
+
+/* MEDIA */
+.product__media {
+  position: sticky;
+  top: 130px;
+}
+.product__main-image {
+  aspect-ratio: 1 / 1;
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+}
+.product__main-image img { width: 100%; height: 100%; object-fit: cover; }
+.product__ribbon {
+  position: absolute;
+  top: 1rem; left: 1rem;
+  background: var(--color-accent);
+  color: var(--color-white);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.4rem 0.7rem;
+  border-radius: 3px;
+}
+.product__thumbs {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+.product__thumb {
+  aspect-ratio: 1 / 1;
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+.product__thumb.is-active { border-color: var(--color-primary); }
+.product__thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+/* INFO */
+.product__info {}
+
+.product__brand-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+.product__brand-logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--color-primary);
+  font-size: var(--text-sm);
+  letter-spacing: 0.05em;
+}
+.product__brand-sep { color: var(--color-border); }
+
+.product__title {
+  font-size: var(--text-3xl);
+  margin-bottom: 0.75rem;
+  font-family: var(--font-display);
+  text-transform: none;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.product__rating-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  font-size: var(--text-sm);
+}
+.product__stars { color: #f5a623; letter-spacing: 1px; font-size: var(--text-base); }
+.product__rating-link {
+  color: var(--color-text-muted);
+  text-decoration: underline;
+  text-decoration-color: var(--color-border);
+}
+
+.product__price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+.product__price {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--color-text);
+}
+.product__price.is-sale { color: var(--color-sale); }
+.product__price-was {
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+}
+.product__price-tax {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+/* SPEC HIGHLIGHTS (key metafields, surfaced above the fold) */
+.spec-highlights {
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.spec-highlights__item {}
+.spec-highlights__label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+.spec-highlights__value {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1;
+}
+.spec-highlights__value-sm {
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+/* VARIANT SELECTORS */
+.variant-group {
+  margin-bottom: 1.5rem;
+}
+.variant-group__label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.variant-group__selected {
+  color: var(--color-text-muted);
+  font-weight: 500;
+  font-size: var(--text-xs);
+}
+.variant-options {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.variant-option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1rem;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-white);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  transition: all 0.15s;
+  font-family: inherit;
+}
+.variant-option:hover { border-color: var(--color-text); }
+.variant-option.is-active {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+.variant-option.is-unavailable {
+  opacity: 0.4;
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+.variant-option--color {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 50%;
+}
+.variant-option--color.is-active { box-shadow: 0 0 0 2px var(--color-white), 0 0 0 4px var(--color-primary); }
+
+/* QTY + ADD TO CART */
+.product__buy-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.qty-select {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  overflow: hidden;
+}
+.qty-select button {
+  width: 40px;
+  height: 100%;
+  background: none;
+  border: none;
+  font-size: var(--text-lg);
+  cursor: pointer;
+  color: var(--color-text);
+}
+.qty-select button:hover { background: var(--color-bg-alt); }
+.qty-select input {
+  border: none;
+  outline: none;
+  text-align: center;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: var(--text-base);
+  width: 100%;
+  background: transparent;
+}
+
+/* STOCK / SHIPPING ESTIMATE */
+.product__stock {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--text-sm);
+  margin-bottom: 1rem;
+  color: var(--color-success);
+  font-weight: 500;
+}
+.product__stock .dot {
+  width: 8px; height: 8px;
+  background: var(--color-success);
+  border-radius: 50%;
+}
+.product__shipping {
+  padding: 0.85rem 1rem;
+  background: var(--color-primary-light);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  margin-bottom: 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: start;
+}
+.product__shipping svg {
+  width: 18px; height: 18px;
+  color: var(--color-primary);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.product__shipping strong { color: var(--color-primary); }
+
+/* TRUST ROW */
+.product__trust {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 1.5rem;
+}
+.product__trust-item {
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+.product__trust-item svg {
+  width: 22px; height: 22px;
+  color: var(--color-primary);
+  margin: 0 auto 0.35rem;
+  display: block;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SPEC TABLE (the heart of every template — type-specific metafields)
+   ═══════════════════════════════════════════════════════════════ */
+.product__details {
+  padding: var(--space-xl) 0;
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+.product__details-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--space-2xl);
+  padding: 0 var(--space-md);
+}
+.spec-table {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  align-self: start;
+}
+.spec-table__header {
+  padding: 1rem 1.25rem;
+  background: var(--color-bg-alt);
+  border-bottom: 1px solid var(--color-border);
+}
+.spec-table__header h3 {
+  font-size: var(--text-xl);
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 700;
+}
+.spec-table__header-sub {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: 0.2rem;
+}
+.spec-table dl {
+  display: grid;
+  grid-template-columns: 40% 1fr;
+}
+.spec-table dt, .spec-table dd {
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+  display: flex;
+  align-items: center;
+}
+.spec-table dt {
+  color: var(--color-text-muted);
+  font-weight: 500;
+  background: rgba(0,0,0,0.01);
+}
+.spec-table dd {
+  font-weight: 600;
+  color: var(--color-text);
+}
+.spec-table dt:last-of-type, .spec-table dd:last-of-type {
+  border-bottom: none;
+}
+.spec-table .yes {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--color-success);
+}
+.spec-table .yes svg { width: 14px; height: 14px; }
+.spec-table .chip {
+  display: inline-block;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-right: 0.25rem;
+}
+
+/* DESCRIPTION COLUMN */
+.product__description {}
+.product__description h3 {
+  font-size: var(--text-2xl);
+  text-transform: none;
+  letter-spacing: 0;
+  margin-bottom: 1rem;
+}
+.product__description p {
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+.product__description ul {
+  margin-bottom: 1rem;
+  padding-left: 1.25rem;
+}
+.product__description li {
+  margin-bottom: 0.4rem;
+}
+
+/* PLAYSTYLE BADGE (blades + rubbers) */
+.playstyle-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.playstyle-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-radius: 3px;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.playstyle-badge--off { background: #c8392c; }
+.playstyle-badge--all { background: #1f5d5e; }
+.playstyle-badge--def { background: #4a5e7a; }
+
+/* COMPARISON TABLE (for related products) */
+.related {
+  padding: var(--space-xl) 0;
+  background: var(--color-bg-alt);
+}
+.related__title {
+  font-size: var(--text-2xl);
+  margin-bottom: 1.5rem;
+  text-transform: none;
+  letter-spacing: 0;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 var(--space-md);
+}
+.related__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+.product-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.product-card__media {
+  aspect-ratio: 1 / 1;
+  background: var(--color-bg-alt);
+}
+.product-card__media img { width: 100%; height: 100%; object-fit: cover; }
+.product-card__body {
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.product-card__brand {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.2rem;
+  font-weight: 600;
+}
+.product-card__title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+.product-card__meta {
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+.product-card__chip {
+  font-size: 10px;
+  font-weight: 600;
+  background: var(--color-bg-alt);
+  color: var(--color-text-muted);
+  padding: 0.1rem 0.4rem;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+.product-card__price {
+  margin-top: auto;
+  font-weight: 700;
+  font-size: var(--text-base);
+}
+
+/* FAQ SECTION (per-template) */
+.faq {
+  padding: var(--space-xl) 0;
+}
+.faq__inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+.faq h3 {
+  font-size: var(--text-2xl);
+  text-transform: none;
+  letter-spacing: 0;
+  margin-bottom: 1.5rem;
+}
+.faq__item {
+  border-bottom: 1px solid var(--color-border);
+  padding: 1rem 0;
+}
+.faq__q {
+  font-weight: 600;
+  font-size: var(--text-base);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.faq__q::after {
+  content: '+';
+  font-size: var(--text-2xl);
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+.faq__item.is-open .faq__q::after { content: '−'; }
+.faq__a {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-top: 0.75rem;
+  display: none;
+}
+.faq__item.is-open .faq__a { display: block; }
+
+/* GIFT CARD SPECIAL UI */
+.gift-card-preview {
+  aspect-ratio: 1.586 / 1;
+  background: linear-gradient(135deg, #134445 0%, #1f5d5e 60%, #2d8a4e 100%);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.gift-card-preview::before {
+  content: '';
+  position: absolute;
+  right: -30%; top: -30%;
+  width: 80%; aspect-ratio: 1;
+  background: radial-gradient(circle, rgba(255,184,138,0.3) 0%, transparent 60%);
+  pointer-events: none;
+}
+.gift-card-preview__brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-xl);
+  letter-spacing: 0.02em;
+}
+.gift-card-preview__amount {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+.gift-card-preview__label {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+  margin-bottom: 0.25rem;
+}
+.gift-card-amounts {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.gift-card-amounts .variant-option {
+  flex-direction: column;
+  padding: 0.85rem 0.5rem;
+  line-height: 1;
+}
+.gift-card-message {
+  width: 100%;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  font-family: inherit;
+  font-size: var(--text-sm);
+  resize: vertical;
+  min-height: 80px;
+  margin-bottom: 1.5rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .product__grid { grid-template-columns: 1fr; gap: var(--space-xl); }
+  .product__media { position: static; }
+  .product__details-inner { grid-template-columns: 1fr; }
+  .related__grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 767px) {
+  .product__title { font-size: var(--text-2xl); }
+  .spec-highlights { grid-template-columns: 1fr 1fr; }
+  .product__buy-row { grid-template-columns: 100px 1fr; }
+  .related__grid { grid-template-columns: repeat(2, 1fr); }
+  .product__details-inner { padding: 0 var(--space-md); }
+  .mini-header__nav { display: none; }
+  .template-switcher__tabs { gap: 0.2rem; }
+  .template-switcher__tab { font-size: 10px; padding: 0.3rem 0.5rem; }
+  .product__trust { grid-template-columns: 1fr; gap: 0.5rem; text-align: left; }
+  .product__trust-item { display: flex; align-items: center; gap: 0.5rem; text-align: left; }
+  .product__trust-item svg { margin: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     MOCKUP-ONLY: Template switcher
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="template-switcher">
+  <div class="template-switcher__inner">
+    <span class="template-switcher__label">Product templates →</span>
+    <div class="template-switcher__tabs">
+      <button class="template-switcher__tab is-active" data-template="holz">Holz / Blade</button>
+      <button class="template-switcher__tab" data-template="belag">Belag / Rubber</button>
+      <button class="template-switcher__tab" data-template="ball">Ball</button>
+      <button class="template-switcher__tab" data-template="komplett">Komplettschläger</button>
+      <button class="template-switcher__tab" data-template="kleidung">Kleidung</button>
+      <button class="template-switcher__tab" data-template="zubehoer">Zubehör</button>
+      <button class="template-switcher__tab" data-template="gutschein">Gutschein</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     MINI HEADER (shared, mockup-only)
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="mini-header">
+  <div class="mini-header__inner">
+    <a href="#" class="mini-header__logo">TTM<span>-Store</span></a>
+    <ul class="mini-header__nav">
+      <li><a href="#">Blades</a></li>
+      <li><a href="#">Rubbers</a></li>
+      <li><a href="#">Balls</a></li>
+      <li><a href="#">Clothing</a></li>
+      <li><a href="#">Accessories</a></li>
+      <li><a href="#">Brands</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     TEMPLATE 1: HOLZ (BLADE)
+     SHOPIFY: templates/product.holz.json → uses main-product section
+     Section schema renders metafield group "Holz" + "Common"
+     Liquid: {{ product.metafields.specs.gewicht }} etc.
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="template is-active" id="t-holz">
+  <div class="template-label">
+    <div class="template-label__inner">
+      <div class="template-label__title">
+        <div class="template-label__type">Template 1 — Holz</div>
+        <div class="template-label__en">(Blade) · 28 products in catalogue</div>
+      </div>
+      <div class="template-label__shopify">product.holz.json</div>
+    </div>
+  </div>
+
+  <div class="breadcrumbs">
+    <div class="breadcrumbs__inner">
+      <a href="#">Home</a>
+      <span class="sep">/</span>
+      <a href="#">Hölzer</a>
+      <span class="sep">/</span>
+      <a href="#">Tibhar</a>
+      <span class="sep">/</span>
+      <span class="current">Tibhar Evolution OFF-S</span>
+    </div>
+  </div>
+
+  <div class="product">
+    <div class="container">
+      <div class="product__grid">
+        <div class="product__media">
+          <div class="product__main-image">
+            <span class="product__ribbon">BESTSELLER</span>
+            <img src="https://picsum.photos/seed/holz-main/800/800" alt="Tibhar Evolution OFF-S blade">
+          </div>
+          <div class="product__thumbs">
+            <div class="product__thumb is-active"><img src="https://picsum.photos/seed/holz-t1/200/200" alt=""></div>
+            <div class="product__thumb"><img src="https://picsum.photos/seed/holz-t2/200/200" alt=""></div>
+            <div class="product__thumb"><img src="https://picsum.photos/seed/holz-t3/200/200" alt=""></div>
+            <div class="product__thumb"><img src="https://picsum.photos/seed/holz-t4/200/200" alt=""></div>
+            <div class="product__thumb"><img src="https://picsum.photos/seed/holz-t5/200/200" alt=""></div>
+          </div>
+        </div>
+
+        <div class="product__info">
+          <div class="product__brand-row">
+            <span class="product__brand-logo">TIBHAR</span>
+            <span class="product__brand-sep">·</span>
+            <span>Holz (Blade)</span>
+          </div>
+          <h1 class="product__title">Tibhar Evolution OFF-S Carbon Blade</h1>
+          <div class="product__rating-row">
+            <span class="product__stars">★★★★★</span>
+            <span>4.9</span>
+            <a href="#reviews" class="product__rating-link">73 reviews</a>
+          </div>
+
+          <div class="playstyle-row">
+            <span class="playstyle-badge playstyle-badge--off">OFF+</span>
+            <span class="playstyle-badge playstyle-badge--off">OFF</span>
+          </div>
+
+          <div class="product__price-row">
+            <span class="product__price">149.00 €</span>
+          </div>
+          <div class="product__price-tax">Incl. VAT, plus shipping</div>
+
+          <!-- KEY METAFIELDS surfaced above the fold -->
+          <div class="spec-highlights">
+            <div class="spec-highlights__item">
+              <div class="spec-highlights__label">Tempo (Speed)</div>
+              <div class="spec-highlights__value">9+</div>
+            </div>
+            <div class="spec-highlights__item">
+              <div class="spec-highlights__label">Kontrolle (Control)</div>
+              <div class="spec-highlights__value">7</div>
+            </div>
+            <div class="spec-highlights__item">
+              <div class="spec-highlights__label">Gewicht (Weight)</div>
+              <div class="spec-highlights__value">87<span style="font-size: 0.6em; opacity: 0.6;">g</span></div>
+            </div>
+          </div>
+
+          <!-- VARIANT: Griffform (handle shape) -->
+          <div class="variant-group">
+            <div class="variant-group__label">
+              <span>Griffform (Handle shape)</span>
+              <span class="variant-group__selected">Konkav (Flared)</span>
+            </div>
+            <div class="variant-options">
+              <button class="variant-option is-active">Konkav (FL)</button>
+              <button class="variant-option">Gerade (ST)</button>
+              <button class="variant-option">Anatomisch (AN)</button>
+              <button class="variant-option is-unavailable">Chinesisch (CN)</button>
+            </div>
+          </div>
+
+          <div class="product__buy-row">
+            <div class="qty-select">
+              <button>−</button>
+              <input type="text" value="1">
+              <button>+</button>
+            </div>
+            <button class="btn btn--primary btn--full">Add to cart</button>
+          </div>
+
+          <div class="product__stock">
+            <span class="dot"></span>
+            In stock · ships today if ordered by 14:00
+          </div>
+
+          <div class="product__shipping">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <div>
+              <strong>Free shipping over 69€</strong> · Delivery in 1-2 working days within Germany
+            </div>
+          </div>
+
+          <div class="product__trust">
+            <div class="product__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8a5.5 5.5 0 0 1 9.9-3.3l.1.1.1-.1a5.5 5.5 0 0 1 9.9 3.3C20 17.5 12 22 12 22Z"/></svg>
+              Hand-picked by players
+            </div>
+            <div class="product__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/><path d="m9 12 2 2 4-4"/></svg>
+              30-day returns
+            </div>
+            <div class="product__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              Real player advice
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPEC TABLE — type-specific metafields rendered from group "Holz" -->
+  <div class="product__details">
+    <div class="product__details-inner">
+      <div class="spec-table">
+        <div class="spec-table__header">
+          <h3>Specifications</h3>
+          <div class="spec-table__header-sub">Type-specific spec fields (Group: Holz / Blade)</div>
+        </div>
+        <dl>
+          <dt>Marke (Brand)</dt><dd>Tibhar</dd>
+          <dt>Gewicht (Weight)</dt><dd>87 g</dd>
+          <dt>Furniere (Plies)</dt><dd>7</dd>
+          <dt>Tempo (Speed)</dt><dd>9+</dd>
+          <dt>Kontrolle (Control)</dt><dd>7</dd>
+          <dt>Spielstrategie (Playing strategy)</dt><dd><span class="chip">OFF+</span><span class="chip">OFF</span></dd>
+          <dt>Griffform (Handle shape)</dt><dd>Konkav/FL, Gerade/ST, Anatomisch/AN</dd>
+          <dt>Hauptmaterial (Main material)</dt><dd>Koto outer, Limba inner</dd>
+          <dt>Kohlefaser (Carbon fiber)</dt><dd>ALC (Arylate-Carbon)</dd>
+          <dt>Blattgröße (Blade head size)</dt><dd>157 × 150 mm</dd>
+          <dt>Spielerlevel (Player level)</dt><dd><span class="chip">Fortgeschritten</span><span class="chip">Profi</span></dd>
+        </dl>
+      </div>
+
+      <div class="product__description">
+        <h3>About this blade</h3>
+        <p>The Evolution OFF-S is Tibhar's offensive workhorse for players who want speed without sacrificing the ability to feel the ball at the table. The 7-ply construction with two Arylate-Carbon layers gives you the rigid, fast core needed for hard topspin loops, while the Koto outer veneer keeps the impact crisp rather than woolly.</p>
+        <p>This blade rewards a confident, swinging stroke. If you tend to brush the ball or play short over the table, look at the lower-OFF or ALL+ options in the Tibhar range instead.</p>
+        <h3>Who it's for</h3>
+        <ul>
+          <li>Intermediate to advanced players developing a topspin-driven game</li>
+          <li>Tournament players who already know they prefer a stiffer feel</li>
+          <li>Anyone moving up from a 5-ply all-round blade and ready for more speed</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="related">
+    <h3 class="related__title">Similar blades</h3>
+    <div class="related__grid">
+      <a href="#" class="product-card">
+        <div class="product-card__media"><img src="https://picsum.photos/seed/rel-h1/300/300" alt=""></div>
+        <div class="product-card__body">
+          <div class="product-card__brand">Tibhar</div>
+          <div class="product-card__title">Stratus Power Wood</div>
+          <div class="product-card__meta"><span class="product-card__chip">ALL+</span><span class="product-card__chip">5-ply</span></div>
+          <div class="product-card__price">79.00 €</div>
+        </div>
+      </a>
+      <a href="#" class="product-card">
+        <div class="product-card__media"><img src="https://picsum.photos/seed/rel-h2/300/300" alt=""></div>
+        <div class="product-card__body">
+          <div class="product-card__brand">Nexy</div>
+          <div class="product-card__title">Etika Pro H</div>
+          <div class="product-card__meta"><span class="product-card__chip">OFF</span><span class="product-card__chip">5-ply</span></div>
+          <div class="product-card__price">95.00 €</div>
+        </div>
+      </a>
+      <a href="#" class="product-card">
+        <div class="product-card__media"><img src="https://picsum.photos/seed/rel-h3/300/300" alt=""></div>
+        <div class="product-card__body">
+          <div class="product-card__brand">Resonant</div>
+          <div class="product-card__title">RX-7 Carbon</div>
+          <div class="product-card__meta"><span class="product-card__chip">OFF+</span><span class="product-card__chip">ALC</span></div>
+          <div class="product-card__price">189.00 €</div>
+        </div>
+      </a>
+      <a href="#" class="product-card">
+        <div class="product-card__media"><img src="https://picsum.photos/seed/rel-h4/300/300" alt=""></div>
+        <div class="product-card__body">
+          <div class="product-card__brand">Tibhar</div>
+          <div class="product-card__title">Drinkhall Original</div>
+          <div class="product-card__meta"><span class="product-card__chip">OFF</span><span class="product-card__chip">5-ply</span></div>
+          <div class="product-card__price">110.00 €</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="faq">
+    <div class="faq__inner">
+      <h3>Frequently asked</h3>
+      <div class="faq__item is-open">
+        <div class="faq__q">Is this blade right for an intermediate player?</div>
+        <div class="faq__a">It can be, but only if you've already played at least 1-2 years and have a developing topspin loop. Intermediate players still working on consistency are usually better served by an ALL or ALL+ blade.</div>
+      </div>
+      <div class="faq__item">
+        <div class="faq__q">Does the blade come with rubbers?</div>
+        <div class="faq__a">No, this is a bare blade. You'll need to add rubbers separately. We can glue them on for free if you order both together.</div>
+      </div>
+      <div class="faq__item">
+        <div class="faq__q">What's the difference between FL, ST and AN handles?</div>
+        <div class="faq__a">Flared (Konkav) widens at the end, giving a more secure grip. Straight (Gerade) is even thickness top to bottom. Anatomic (AN) has a contoured shape. Most European players use FL.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     TEMPLATE 2: BELAG (RUBBER)
+     SHOPIFY: templates/product.belag.json
+     Metafield group: Belag — speed, spin, control, sponge hardness etc.
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="template" id="t-belag">
+  <div class="template-label">
+    <div class="template-label__inner">
+      <div class="template-label__title">
+        <div class="template-label__type">Template 2 — Belag</div>
+        <div class="template-label__en">(Rubber) · 28 products in catalogue</div>
+      </div>
+      <div class="template-label__shopify">product.belag.json</div>
+    </div>
+  </div>
+
+  <div class="breadcrumbs">
+    <div class="breadcrumbs__inner">
+      <a href="#">Home</a>
+      <span class="sep">/</span>
+      <a href="#">Beläge</a>
+      <span class="sep">/</span>
+      <a href="#">Tibhar</a>
+      <span class="sep">/</span>
+      <span class="current">Tibhar Evolution FX-P</span>
+    </div>
+  </div>
+
+  <div class="product">
+    <div class="container">
+      <div class="product__grid">
+        <div class="product__media">
+          <div class="product__main-image">
+            <span class="product__ribbon" style="background: var(--color-sale);">-32%</span>
+            <img src="https://picsum.photos/seed/belag-main/800/800" alt="Tibhar Evolution FX-P rubber">
+          </div>
+          <div class="product__thumbs">
+            <div class="product__thumb is-active"><img src="https://picsum.photos/seed/belag-t1/200/200" alt=""></div>
+            <div class="product__thumb"><img src="https://picsum.photos/seed/belag-t2/200/200" alt=""></div>
+            <div class="product__thumb"><img src="https://picsum.photos/seed/belag-t3/200/200" alt=""></div>
+            <div class="product__thumb"><img src="https://picsum.photos/seed/belag-t4/200/200" alt=""></div>
+          </div>
+        </div>
+
+        <div class="product__info">
+          <div class="product__brand-row">
+            <span class="product__brand-logo">TIBHAR</span>
+            <span class="product__brand-sep">·</span>
+            <span>Belag (Rubber)</span>
+          </div>
+          <h1 class="product__title">Tibhar Evolution FX-P Rubber</h1>
+          <div class="product__rating-row">
+            <span class="product__stars">★★★★★</span>
+            <span>4.8</span>
+            <a href="#reviews" class="product__rating-link">127 reviews</a>
+          </div>
+
+          <div class="playstyle-row">
+            <span class="playstyle-badge playstyle-badge--off">OFF</span>
+            <span class="playstyle-badge playstyle-badge--all">ALL</span>
+          </div>
+
+          <div class="product__price-row">
+            <span class="product__price is-sale">28.90 €</span>
+            <span class="product__price-was">42.50 €</span>
+          </div>
+          <div class="product__price-tax">Incl. VAT, plus shipping</div>
+
+          <div class="spec-highlights">
+            <div class="spec-highlights__item">
+              <div class="spec-highlights__label">Geschw. (Speed)</div>
+              <div class="spec-highlights__value">11</div>
+            </div>
+            <div class="spec-highlights__item">
+              <div class="spec-highlights__label">Spin</div>
+              <div class="spec-highlights__value">11+</div>
+            </div>
+            <div class="spec-highlights__item">
+              <div class="spec-highlights__label">Schwammhärte</div>
+              <div class="spec-highlights__value">47.5°</div>
+            </div>
+          </div>
+
+          <!-- VARIANT 1: Farbe -->
+          <div class="variant-group">
+            <div class="variant-group__label">
+              <span>Farbe (Color)</span>
+              <span class="variant-group__selected">Rot (Red)</span>
+            </div>
+            <div class="variant-options">
+              <button class="variant-option variant-option--color is-active" style="background: #c8392c;" aria-label="Red"></button>
+              <button class="variant-option variant-option--color" style="background: #1a1a1a;" aria-label="Black"></button>
+            </div>
+          </div>
+
+          <!-- VARIANT 2: Schwammstärke -->
+          <div class="variant-group">
+            <div class="variant-group__label">
+              <span>Schwammstärke (Sponge thickness)</span>
+              <span class="variant-group__selected">2.1 mm</span>
+            </div>
+            <div class="variant-options">
+              <button class="variant-option">1.8 mm</button>
+              <button class="variant-option">2.0 mm</button>
+              <button class="variant-option is-active">2.1 mm</button>
+              <button class="variant-option">max</button>
+            </div>
+          </div>
+
+          <div class="product__buy-row">
+            <div class="qty-select">
+              <button>−</button>
+              <input type="text" value="1">
+              <button>+</button>
+            </div>
+            <button class="btn btn--primary btn--full">Add to cart</button>
+          </div>
+
+          <div class="product__stock">
+            <span class="dot"></span>
+            In stock · ships today if ordered by 14:00
+          </div>
+
+          <div class="product__shipping">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <div>
+              <strong>Free shipping over 69€</strong> · Free rubber-gluing service available at checkout
+            </div>
+          </div>
+
+          <div class="product__trust">
+            <div class="product__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              ITTF approved
+            </div>
+            <div class="product__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/><path d="m9 12 2 2 4-4"/></svg>
+              30-day returns
+            </div>
+            <div class="product__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              Free gluing on request
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product__details">
+    <div class="product__details-inner">
+      <div class="spec-table">
+        <div class="spec-table__header">
+          <h3>Specifications</h3>
+          <div class="spec-table__header-sub">Type-specific spec fields (Group: Belag / Rubber)</div>
+        </div>
+        <dl>
+          <dt>Marke (Brand)</dt><dd>Tibhar</dd>
+          <dt>Geschwindigkeit (Speed)</dt><dd>11</dd>
+          <dt>Spin</dt><dd>11+</dd>
+          <dt>Kontrolle (Control)</dt><dd>8</dd>
+          <dt>Schwammhärte (Sponge hardness)</dt><dd>47.5°</dd>
+          <dt>Schwammhärte-Kategorie</dt><dd>Mittelhart (Medium-hard)</dd>
+          <dt>Belag-Typ (Rubber type)</dt><dd>Noppen innen (Inverted)</dd>
+          <dt>Oberfläche (Surface)</dt><dd>Halbgriffig (Semi-tacky)</dd>
+          <dt>Spielstrategie (Playing strategy)</dt><dd><span class="chip">Angriff</span><span class="chip">Allround</span></dd>
+          <dt>Schwammstärken (Sponge thicknesses)</dt><dd>1.8, 2.0, 2.1 mm, max</dd>
+          <dt>Farben verfügbar (Colors available)</dt><dd>Rot, Schwarz</dd>
+          <dt>ITTF-zugelassen (ITTF-approved)</dt><dd><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Ja (Yes)</span></dd>
+          <dt>Spielerlevel (Player level)</dt><dd><span class="chip">Fortgeschritten</span><span class="chip">Profi</span></dd>
+        </dl>
+      </div>
+
+      <div class="product__description">
+        <h3>About this rubber</h3>
+        <p>The FX-P is the softer-sponge sibling of the popular MX-P. The 47.5° medium-hard sponge keeps the dwell time longer than the harder Tibhar rubbers, which translates to more spin variation and easier opening loops from underspin balls. Top sheet stays the same, so you keep the speed when you commit to a stroke.</p>
+        <p>The semi-tacky surface gives you grip without the deadening feel of fully tacky Chinese rubbers. A solid all-round offensive choice that doesn't punish you on touch shots.</p>
+        <h3>Compared to the MX-P</h3>
+        <ul>
+          <li>Softer sponge (47.5° vs 50°)</li>
+          <li>Slightly slower in direct shots, but more spin variation</li>
+          <li>Easier to control on serves and short pushes</li>
+          <li>Same top sheet rubber compound</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="related">
+    <h3 class="related__title">Often bought with</h3>
+    <div class="related__grid">
+      <a href="#" class="product-card">
+        <div class="product-card__media"><img src="https://picsum.photos/seed/rel-b1/300/300" alt=""></div>
+        <div class="product-card__body">
+          <div class="product-card__brand">Tibhar</div>
+          <div class="product-card__title">Evolution MX-P (Harder)</div>
+          <div class="product-card__meta"><span class="product-card__chip">OFF+</span><span class="product-card__chip">50°</span></div>
+          <div class="product-card__price">42.50 €</div>
+        </div>
+      </a>
+      <a href="#" class="product-card">
+        <div class="product-card__media"><img src="https://picsum.photos/seed/rel-b2/300/300" alt=""></div>
+        <div class="product-card__body">
+          <div class="product-card__brand">Tibhar</div>
+          <div class="product-card__title">Cleaner Pflegeschwamm</div>
+          <div class="product-card__meta"><span class="product-card__chip">Care</span></div>
+          <div class="product-card__price">6.90 €</div>
+        </div>
+      </a>
+      <a href="#" class="product-card">
+        <div class="product-card__media"><img src="https://picsum.photos/seed/rel-b3/300/300" alt=""></div>
+        <div class="product-card__body">
+          <div class="product-card__brand">Tibhar</div>
+          <div class="product-card__title">Lacquer Bond Glue</div>
+          <div class="product-card__meta"><span class="product-card__chip">90ml</span></div>
+          <div class="product-card__price">12.50 €</div>
+        </div>
+      </a>
+      <a href="#" class="product-card">
+        <div class="product-card__media"><img src="https://picsum.photos/seed/rel-b4/300/300" alt=""></div>
+        <div class="product-card__body">
+          <div class="product-card__brand">Maxwill</div>
+          <div class="product-card__title">M1 Spin (Tacky)</div>
+          <div class="product-card__meta"><span class="product-card__chip">OFF</span><span class="product-card__chip">Tacky</span></div>
+          <div class="product-card__price">34.90 €</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     TEMPLATE 3: BALL
+     SHOPIFY: templates/product.ball.json
+     Metafield group: Ball — star rating, material, diameter, pack size
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="template" id="t-ball">
+  <div class="template-label">
+    <div class="template-label__inner">
+      <div class="template-label__title">
+        <div class="template-label__type">Template 3 — Ball</div>
+        <div class="template-label__en">(Ball) · 2 products in catalogue</div>
+      </div>
+      <div class="template-label__shopify">product.ball.json</div>
+    </div>
+  </div>
+
+  <div class="breadcrumbs">
+    <div class="breadcrumbs__inner">
+      <a href="#">Home</a>
+      <span class="sep">/</span>
+      <a href="#">Bälle</a>
+      <span class="sep">/</span>
+      <span class="current">TTM 3-Star Training Balls</span>
+    </div>
+  </div>
+
+  <div class="product">
+    <div class="container">
+      <div class="product__grid">
+        <div class="product__media">
+          <div class="product__main-image">
+            <img src="https://picsum.photos/seed/ball-main/800/800" alt="TTM 3-Star training balls">
+          </div>
+          <div class="product__thumbs">
+            <div class="product__thumb is-active"><img src="https://picsum.photos/seed/ball-t1/200/200" alt=""></div>
+            <div class="product__thumb"><img src="https://picsum.photos/seed/ball-t2/200/200" alt=""></div>
+            <div class="product__thumb"><img src="https://picsum.photos/seed/ball-t3/200/200" alt=""></div>
+          </div>
+        </div>
+
+        <div class="product__info">
+          <div class="product__brand-row">
+            <span class="product__brand-logo">TTM</span>
+            <span class="product__brand-sep">·</span>
+            <span>Ball</span>
+          </div>
+          <h1 class="product__title">TTM 3-Star Training Balls 40+</h1>
+          <div class="product__rating-row">
+            <span class="product__stars">★★★★★</span>
+            <span>4.9</span>
+            <a href="#reviews" class="product__rating-link">112 reviews</a>
+          </div>
+
+          <div class="product__price-row">
+            <span class="product__price">22.90 €</span>
+          </div>
+          <div class="product__price-tax">Incl. VAT · 72-pack (0.32 €/ball)</div>
+
+          <div class="spec-highlights">
+            <div class="spec-highlights__item">
+              <div class="spec-highlights__label">Rating</div>
+              <div class="spec-highlights__value">3-Star</div>
+            </div>
+            <div class="spec-highlights__item">
+              <div class="spec-highlights__label">Diameter</div>
+              <div class="spec-highlights__value">40+</div>
+            </div>
+            <div class="spec-highlights__item">
+              <div class="spec-highlights__label">ITTF</div>
+              <div class="spec-highlights__value spec-highlights__value-sm" style="color: var(--color-success);">✓ Approved</div>
+            </div>
+          </div>
+
+          <!-- VARIANT 1: Color -->
+          <div class="variant-group">
+            <div class="variant-group__label">
+              <span>Farbe (Color)</span>
+              <span class="variant-group__selected">Weiß (White)</span>
+            </div>
+            <div class="variant-options">
+              <button class="variant-option is-active">Weiß (White)</button>
+              <button class="variant-option">Orange</button>
+            </div>
+          </div>
+
+          <!-- VARIANT 2: Pack size -->
+          <div class="variant-group">
+            <div class="variant-group__label">
+              <span>Packungsgröße (Pack size)</span>
+              <span class="variant-group__selected">72 balls</span>
+            </div>
+            <div class="variant-options">
+              <button class="variant-option">3</button>
+              <button class="variant-option">6</button>
+              <button class="variant-option">12</button>
+              <button class="variant-option is-active">72</button>
+              <button class="variant-option">100</button>
+            </div>
+          </div>
+
+          <div class="product__buy-row">
+            <div class="qty-select">
+              <button>−</button>
+              <input type="text" value="1">
+              <button>+</button>
+            </div>
+            <button class="btn btn--primary btn--full">Add to cart</button>
+          </div>
+
+          <div class="product__stock">
+            <span class="dot"></span>
+            In stock · ships today if ordered by 14:00
+          </div>
+
+          <div class="product__shipping">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <div>
+              <strong>Free shipping over 69€</strong> · Bulk-friendly packaging
+            </div>
+          </div>
+
+          <div class="product__trust">
+            <div class="product__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Tournament legal
+            </div>
+            <div class="product__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/><path d="m9 12 2 2 4-4"/></svg>
+              Quality consistent
+            </div>
+            <div class="product__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+              Bulk pricing
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product__details">
+    <div class="product__details-inner">
+      <div class="spec-table">
+        <div class="spec-table__header">
+          <h3>Specifications</h3>
+          <div class="spec-table__header-sub">Type-specific spec fields (Group: Ball)</div>
+        </div>
+        <dl>
+          <dt>Marke (Brand)</dt><dd>TTM</dd>
+          <dt>Sterne-Rating (Star rating)</dt><dd>3-Stern (3-Star)</dd>
+          <dt>Material</dt><dd>Kunststoff/Poly (Plastic/Poly)</dd>
+          <dt>Durchmesser (Diameter)</dt><dd>40+ mm</dd>
+          <dt>Farben verfügbar (Colors available)</dt><dd>Weiß, Orange</dd>
+          <dt>Packungsgrößen (Pack sizes)</dt><dd>3, 6, 12, 72, 100</dd>
+          <dt>ITTF-zugelassen (ITTF-approved)</dt><dd><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Ja (Yes)</span></dd>
+          <dt>Spielerlevel (Player level)</dt><dd><span class="chip">All levels</span></dd>
+        </dl>
+      </div>
+
+      <div class="product__description">
+        <h3>About these balls</h3>
+        <p>Tournament-grade 3-star balls without the tournament-grade price tag. The poly material has the consistent bounce and roundness ITTF requires, and our return rate on these is under 1% since 2019.</p>
+        <p>Bought in 72-packs by clubs and serious training players. The 6-pack version is the same ball, packaged for casual use.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     TEMPLATE 4: KOMPLETTSCHLÄGER (PRE-ASSEMBLED RACKET)
+     SHOPIFY: templates/product.komplett.json
+     Metafield group: Komplettschläger — includes blade, includes rubbers, total weight etc.
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="template" id="t-komplett">
+  <div class="template-label">
+    <div class="template-label__inner">
+      <div class="template-label__title">
+        <div class="template-label__type">Template 4 — Komplettschläger</div>
+        <div class="template-label__en">(Pre-Assembled Racket) · 1 product in catalogue</div>
+      </div>
+      <div class="template-label__shopify">product.komplett.json</div>
+    </div>
+  </div>
+
+  <div class="breadcrumbs">
+    <div class="breadcrumbs__inner">
+      <a href="#">Home</a>
+      <span class="sep">/</span>
+      <a href="#">Komplettschläger</a>
+      <span class="sep">/</span>
+      <span class="current">Maxwill Tryout Kit</span>
+    </div>
+  </div>
+
+  <div class="product">
+    <div class="container">
+      <div class="product__grid">
+        <div class="product__media">
+          <div class="product__main-image">
+            <span class="product__ribbon">STARTER PICK</span>
+            <img src="https://picsum.photos/seed/komplett-main/800/800" alt="Maxwill Tryout pre-assembled kit">
+          </div>
+          <div class="product__thumbs">
+            <div class="product__thumb is-active"><img src="https://picsum.photos/seed/komplett-t1/200/200" alt=""></div>
+            <div class="product__thumb"><img src="https://picsum.photos/seed/komplett-t2/200/200" alt=""></div>
+            <div class="product__thumb"><img src="https://picsum.photos/seed/komplett-t3/200/200" alt=""></div>
+            <div class="product__thumb"><img src="https://picsum.photos/seed/komplett-t4/200/200" alt=""></div>
+          </div>
+        </div>
+
+        <div class="product__info">
+          <div class="product__brand-row">
+            <span class="product__brand-logo">MAXWILL</span>
+            <span class="product__brand-sep">·</span>
+            <span>Komplettschläger (Pre-Assembled)</span>
+          </div>
+          <h1 class="product__title">Maxwill Tryout Pre-Assembled Kit</h1>
+          <div class="product__rating-row">
+            <span class="product__stars">★★★★★</span>
+            <span>4.9</span>
+            <a href="#reviews" class="product__rating-link">54 reviews</a>
+          </div>
+
+          <div class="product__price-row">
+            <span class="product__price">49.90 €</span>
+          </div>
+          <div class="product__price-tax">Incl. VAT, plus shipping</div>
+
+          <div class="spec-highlights">
+            <div class="spec-highlights__item">
+              <div class="spec-highlights__label">Level</div>
+              <div class="spec-highlights__value spec-highlights__value-sm">Beginner</div>
+            </div>
+            <div class="spec-highlights__item">
+              <div class="spec-highlights__label">Total weight</div>
+              <div class="spec-highlights__value">170<span style="font-size: 0.6em; opacity: 0.6;">g</span></div>
+            </div>
+            <div class="spec-highlights__item">
+              <div class="spec-highlights__label">Ready to play</div>
+              <div class="spec-highlights__value spec-highlights__value-sm" style="color: var(--color-success);">✓ Yes</div>
+            </div>
+          </div>
+
+          <!-- VARIANT 1: Handle shape -->
+          <div class="variant-group">
+            <div class="variant-group__label">
+              <span>Griffform (Handle shape)</span>
+              <span class="variant-group__selected">Konkav (Flared)</span>
+            </div>
+            <div class="variant-options">
+              <button class="variant-option is-active">Konkav (FL)</button>
+              <button class="variant-option">Gerade (ST)</button>
+              <button class="variant-option">Anatomisch (AN)</button>
+            </div>
+          </div>
+
+          <div class="product__buy-row">
+            <div class="qty-select">
+              <button>−</button>
+              <input type="text" value="1">
+              <button>+</button>
+            </div>
+            <button class="btn btn--primary btn--full">Add to cart</button>
+          </div>
+
+          <div class="product__stock">
+            <span class="dot"></span>
+            In stock · ships today if ordered by 14:00
+          </div>
+
+          <div class="product__shipping">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <div>
+              <strong>Free shipping over 69€</strong> · Comes ready to play, no glueing needed
+            </div>
+          </div>
+
+          <div class="product__trust">
+            <div class="product__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Ready to play
+            </div>
+            <div class="product__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/><path d="m9 12 2 2 4-4"/></svg>
+              Replaceable rubbers
+            </div>
+            <div class="product__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              Great first racket
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product__details">
+    <div class="product__details-inner">
+      <div class="spec-table">
+        <div class="spec-table__header">
+          <h3>Specifications</h3>
+          <div class="spec-table__header-sub">Type-specific spec fields (Group: Komplettschläger)</div>
+        </div>
+        <dl>
+          <dt>Marke (Brand)</dt><dd>Maxwill</dd>
+          <dt>Enthält Holz (Includes blade)</dt><dd>Maxwill V3 Carbon</dd>
+          <dt>Enthält Beläge (Includes rubbers)</dt><dd>2× Maxwill M1 Spin (2.0 mm)</dd>
+          <dt>Empfohlenes Level (Recommended level)</dt><dd>Einsteiger (Beginner)</dd>
+          <dt>Gesamtgewicht (Total weight)</dt><dd>~170 g</dd>
+          <dt>Griffform (Handle shape)</dt><dd>Konkav, Gerade, Anatomisch</dd>
+          <dt>Beläge austauschbar (Rubbers replaceable)</dt><dd><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Ja (Yes)</span></dd>
+          <dt>Spielerlevel (Player level)</dt><dd><span class="chip">Einsteiger</span></dd>
+        </dl>
+      </div>
+
+      <div class="product__description">
+        <h3>About this kit</h3>
+        <p>If you've never owned a serious table tennis racket and don't know where to start, this is it. The Tryout Kit pairs Maxwill's V3 blade (an ALL-rated 5-ply construction designed for learning) with their M1 Spin rubbers in the gentler 2.0 mm sponge thickness.</p>
+        <p>Unlike supermarket pre-mades, the rubbers on this kit can be swapped out as your game develops. When you outgrow the M1s in 18-24 months, you can keep the blade and upgrade just the rubbers.</p>
+        <h3>What's included</h3>
+        <ul>
+          <li>Maxwill V3 Carbon blade (assembled with your chosen handle shape)</li>
+          <li>2× Maxwill M1 Spin rubbers in red + black, glued and trimmed</li>
+          <li>Protective case</li>
+          <li>A short PDF guide on care and rubber cleaning</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     TEMPLATE 5: KLEIDUNG (CLOTHING)
+     SHOPIFY: templates/product.kleidung.json
+     Metafield group: Kleidung — article type, material, gender, sizes, fit
+     Uses Shopify standard color-pattern metafield for color
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="template" id="t-kleidung">
+  <div class="template-label">
+    <div class="template-label__inner">
+      <div class="template-label__title">
+        <div class="template-label__type">Template 5 — Kleidung</div>
+        <div class="template-label__en">(Clothing) · 16 products in catalogue</div>
+      </div>
+      <div class="template-label__shopify">product.kleidung.json</div>
+    </div>
+  </div>
+
+  <div class="breadcrumbs">
+    <div class="breadcrumbs__inner">
+      <a href="#">Home</a>
+      <span class="sep">/</span>
+      <a href="#">Kleidung</a>
+      <span class="sep">/</span>
+      <a href="#">Hemden</a>
+      <span class="sep">/</span>
+      <span class="current">Tibhar Game Shirt</span>
+    </div>
+  </div>
+
+  <div class="product">
+    <div class="container">
+      <div class="product__grid">
+        <div class="product__media">
+          <div class="product__main-image">
+            <img src="https://picsum.photos/seed/kleidung-main/800/800" alt="Tibhar Game Shirt">
+          </div>
+          <div class="product__thumbs">
+            <div class="product__thumb is-active"><img src="https://picsum.photos/seed/kleidung-t1/200/200" alt=""></div>
+            <div class="product__thumb"><img src="https://picsum.photos/seed/kleidung-t2/200/200" alt=""></div>
+            <div class="product__thumb"><img src="https://picsum.photos/seed/kleidung-t3/200/200" alt=""></div>
+            <div class="product__thumb"><img src="https://picsum.photos/seed/kleidung-t4/200/200" alt=""></div>
+            <div class="product__thumb"><img src="https://picsum.photos/seed/kleidung-t5/200/200" alt=""></div>
+          </div>
+        </div>
+
+        <div class="product__info">
+          <div class="product__brand-row">
+            <span class="product__brand-logo">TIBHAR</span>
+            <span class="product__brand-sep">·</span>
+            <span>Kleidung · Hemd (Shirt)</span>
+          </div>
+          <h1 class="product__title">Tibhar Game Shirt</h1>
+          <div class="product__rating-row">
+            <span class="product__stars">★★★★☆</span>
+            <span>4.6</span>
+            <a href="#reviews" class="product__rating-link">48 reviews</a>
+          </div>
+
+          <div class="product__price-row">
+            <span class="product__price">34.90 €</span>
+          </div>
+          <div class="product__price-tax">Incl. VAT, plus shipping</div>
+
+          <div class="spec-highlights">
+            <div class="spec-highlights__item">
+              <div class="spec-highlights__label">Article</div>
+              <div class="spec-highlights__value spec-highlights__value-sm">Hemd / Shirt</div>
+            </div>
+            <div class="spec-highlights__item">
+              <div class="spec-highlights__label">Material</div>
+              <div class="spec-highlights__value spec-highlights__value-sm">Polyester</div>
+            </div>
+            <div class="spec-highlights__item">
+              <div class="spec-highlights__label">Fit</div>
+              <div class="spec-highlights__value spec-highlights__value-sm">Regular</div>
+            </div>
+          </div>
+
+          <!-- VARIANT 1: Color -->
+          <div class="variant-group">
+            <div class="variant-group__label">
+              <span>Farbe (Color)</span>
+              <span class="variant-group__selected">Petrol / Weiß</span>
+            </div>
+            <div class="variant-options">
+              <button class="variant-option variant-option--color is-active" style="background: linear-gradient(135deg, #1f5d5e 50%, #ffffff 50%);" aria-label="Petrol/White"></button>
+              <button class="variant-option variant-option--color" style="background: linear-gradient(135deg, #1a1a1a 50%, #c8392c 50%);" aria-label="Black/Red"></button>
+              <button class="variant-option variant-option--color" style="background: linear-gradient(135deg, #ffffff 50%, #1a1a1a 50%); border-color: var(--color-border);" aria-label="White/Black"></button>
+              <button class="variant-option variant-option--color" style="background: linear-gradient(135deg, #2d4374 50%, #c9a84c 50%);" aria-label="Navy/Gold"></button>
+            </div>
+          </div>
+
+          <!-- VARIANT 2: Size -->
+          <div class="variant-group">
+            <div class="variant-group__label">
+              <span>Größe (Size) · <a href="#" style="color: var(--color-primary); font-weight: 500; text-decoration: underline;">Size guide</a></span>
+              <span class="variant-group__selected">L</span>
+            </div>
+            <div class="variant-options">
+              <button class="variant-option">XS</button>
+              <button class="variant-option">S</button>
+              <button class="variant-option">M</button>
+              <button class="variant-option is-active">L</button>
+              <button class="variant-option">XL</button>
+              <button class="variant-option is-unavailable">XXL</button>
+              <button class="variant-option">3XL</button>
+            </div>
+          </div>
+
+          <div class="product__buy-row">
+            <div class="qty-select">
+              <button>−</button>
+              <input type="text" value="1">
+              <button>+</button>
+            </div>
+            <button class="btn btn--primary btn--full">Add to cart</button>
+          </div>
+
+          <div class="product__stock">
+            <span class="dot"></span>
+            L in stock · XXL back in stock from Feb 5
+          </div>
+
+          <div class="product__shipping">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <div>
+              <strong>Free shipping over 69€</strong> · Free size exchanges within 30 days
+            </div>
+          </div>
+
+          <div class="product__trust">
+            <div class="product__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              ITTF-approved cut
+            </div>
+            <div class="product__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/><path d="m9 12 2 2 4-4"/></svg>
+              Free size exchange
+            </div>
+            <div class="product__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              Breathable fabric
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product__details">
+    <div class="product__details-inner">
+      <div class="spec-table">
+        <div class="spec-table__header">
+          <h3>Specifications</h3>
+          <div class="spec-table__header-sub">Type-specific spec fields (Group: Kleidung / Clothing)</div>
+        </div>
+        <dl>
+          <dt>Marke (Brand)</dt><dd>Tibhar</dd>
+          <dt>Artikeltyp (Article type)</dt><dd>Hemd (Shirt)</dd>
+          <dt>Material</dt><dd>Polyester, atmungsaktiv (breathable)</dd>
+          <dt>Geschlecht (Gender)</dt><dd>Herren (Men)</dd>
+          <dt>Verfügbare Größen (Available sizes)</dt><dd>XS, S, M, L, XL, XXL, 3XL</dd>
+          <dt>Farben verfügbar (Colors available)</dt><dd>4 colorways</dd>
+          <dt>Passform (Fit)</dt><dd>Regular</dd>
+          <dt>Pflegehinweise (Care)</dt><dd>Maschinenwäsche 30°, nicht bleichen</dd>
+          <dt>ITTF-zugelassen (ITTF-approved)</dt><dd><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Ja (Yes)</span></dd>
+        </dl>
+      </div>
+
+      <div class="product__description">
+        <h3>About this shirt</h3>
+        <p>Tibhar's standard tournament shirt. Lightweight polyester with mesh side panels for ventilation, cut for movement at the table rather than streetwear silhouettes. The ITTF approval means you can wear it at sanctioned tournaments without checking with the umpire.</p>
+        <p>Runs true to size. The L fits a 102-106 cm chest comfortably.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     TEMPLATE 6: ZUBEHÖR (ACCESSORIES)
+     SHOPIFY: templates/product.zubehoer.json
+     Metafield group: Zubehör — accessory type, content/quantity, application
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="template" id="t-zubehoer">
+  <div class="template-label">
+    <div class="template-label__inner">
+      <div class="template-label__title">
+        <div class="template-label__type">Template 6 — Zubehör</div>
+        <div class="template-label__en">(Accessories) · 6 products in catalogue</div>
+      </div>
+      <div class="template-label__shopify">product.zubehoer.json</div>
+    </div>
+  </div>
+
+  <div class="breadcrumbs">
+    <div class="breadcrumbs__inner">
+      <a href="#">Home</a>
+      <span class="sep">/</span>
+      <a href="#">Zubehör</a>
+      <span class="sep">/</span>
+      <a href="#">Kleber</a>
+      <span class="sep">/</span>
+      <span class="current">Tibhar Lacquer Bond</span>
+    </div>
+  </div>
+
+  <div class="product">
+    <div class="container">
+      <div class="product__grid">
+        <div class="product__media">
+          <div class="product__main-image">
+            <img src="https://picsum.photos/seed/zubehoer-main/800/800" alt="Tibhar Lacquer Bond rubber glue">
+          </div>
+          <div class="product__thumbs">
+            <div class="product__thumb is-active"><img src="https://picsum.photos/seed/zubehoer-t1/200/200" alt=""></div>
+            <div class="product__thumb"><img src="https://picsum.photos/seed/zubehoer-t2/200/200" alt=""></div>
+            <div class="product__thumb"><img src="https://picsum.photos/seed/zubehoer-t3/200/200" alt=""></div>
+          </div>
+        </div>
+
+        <div class="product__info">
+          <div class="product__brand-row">
+            <span class="product__brand-logo">TIBHAR</span>
+            <span class="product__brand-sep">·</span>
+            <span>Zubehör · Kleber (Glue)</span>
+          </div>
+          <h1 class="product__title">Tibhar Lacquer Bond Rubber Glue</h1>
+          <div class="product__rating-row">
+            <span class="product__stars">★★★★★</span>
+            <span>4.7</span>
+            <a href="#reviews" class="product__rating-link">82 reviews</a>
+          </div>
+
+          <div class="product__price-row">
+            <span class="product__price">12.50 €</span>
+          </div>
+          <div class="product__price-tax">Incl. VAT · 90 ml (good for ~12 rubbers)</div>
+
+          <div class="spec-highlights">
+            <div class="spec-highlights__item">
+              <div class="spec-highlights__label">Type</div>
+              <div class="spec-highlights__value spec-highlights__value-sm">Glue</div>
+            </div>
+            <div class="spec-highlights__item">
+              <div class="spec-highlights__label">Volume</div>
+              <div class="spec-highlights__value">90<span style="font-size: 0.5em; opacity: 0.6;">ml</span></div>
+            </div>
+            <div class="spec-highlights__item">
+              <div class="spec-highlights__label">Compatible</div>
+              <div class="spec-highlights__value spec-highlights__value-sm">All rubbers</div>
+            </div>
+          </div>
+
+          <!-- VARIANT 1: Volume -->
+          <div class="variant-group">
+            <div class="variant-group__label">
+              <span>Inhalt/Menge (Content)</span>
+              <span class="variant-group__selected">90 ml</span>
+            </div>
+            <div class="variant-options">
+              <button class="variant-option">37 ml</button>
+              <button class="variant-option is-active">90 ml</button>
+              <button class="variant-option">250 ml (Club)</button>
+            </div>
+          </div>
+
+          <div class="product__buy-row">
+            <div class="qty-select">
+              <button>−</button>
+              <input type="text" value="1">
+              <button>+</button>
+            </div>
+            <button class="btn btn--primary btn--full">Add to cart</button>
+          </div>
+
+          <div class="product__stock">
+            <span class="dot"></span>
+            In stock · ships today if ordered by 14:00
+          </div>
+
+          <div class="product__shipping">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <div>
+              <strong>Free shipping over 69€</strong> · VOC-free, ITTF compliant
+            </div>
+          </div>
+
+          <div class="product__trust">
+            <div class="product__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              VOC-free
+            </div>
+            <div class="product__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/><path d="m9 12 2 2 4-4"/></svg>
+              ITTF compliant
+            </div>
+            <div class="product__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              All rubbers
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product__details">
+    <div class="product__details-inner">
+      <div class="spec-table">
+        <div class="spec-table__header">
+          <h3>Specifications</h3>
+          <div class="spec-table__header-sub">Type-specific spec fields (Group: Zubehör / Accessories)</div>
+        </div>
+        <dl>
+          <dt>Marke (Brand)</dt><dd>Tibhar</dd>
+          <dt>Zubehör-Typ (Accessory type)</dt><dd>Kleber (Glue)</dd>
+          <dt>Inhalt/Menge (Content)</dt><dd>90 ml</dd>
+          <dt>Anwendung (Application)</dt><dd>Auftragen mit Schwamm, 10 min trocknen lassen</dd>
+          <dt>Kompatibilität (Compatibility)</dt><dd>Für alle Beläge geeignet (Suitable for all rubbers)</dd>
+          <dt>VOC-frei</dt><dd><span class="yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Ja (Yes)</span></dd>
+        </dl>
+      </div>
+
+      <div class="product__description">
+        <h3>About this glue</h3>
+        <p>Standard latex-based rubber glue. Water-based, VOC-free, ITTF compliant. One bottle is enough for around 12 rubber applications if you use a thin even coat.</p>
+        <h3>How to use it</h3>
+        <ol style="padding-left: 1.25rem;">
+          <li>Apply a thin layer to the rubber sponge with the included sponge applicator</li>
+          <li>Apply a thin layer to the blade</li>
+          <li>Wait 10-12 minutes until both surfaces are tacky-dry</li>
+          <li>Press the rubber onto the blade from one edge, working out air bubbles with a roller</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     TEMPLATE 7: GUTSCHEIN (GIFT CARD)
+     SHOPIFY: templates/product.gift-card.liquid (Shopify built-in)
+     Note: Shopify handles gift cards natively — no custom metafields needed
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="template" id="t-gutschein">
+  <div class="template-label">
+    <div class="template-label__inner">
+      <div class="template-label__title">
+        <div class="template-label__type">Template 7 — Gutschein</div>
+        <div class="template-label__en">(Gift Card) · Native Shopify gift card</div>
+      </div>
+      <div class="template-label__shopify">product.gift-card.json</div>
+    </div>
+  </div>
+
+  <div class="breadcrumbs">
+    <div class="breadcrumbs__inner">
+      <a href="#">Home</a>
+      <span class="sep">/</span>
+      <a href="#">Gutscheine</a>
+      <span class="sep">/</span>
+      <span class="current">TTM-Store Gift Card</span>
+    </div>
+  </div>
+
+  <div class="product">
+    <div class="container">
+      <div class="product__grid">
+        <div class="product__media">
+          <div class="gift-card-preview">
+            <div>
+              <div class="gift-card-preview__brand">TTM-Store</div>
+            </div>
+            <div>
+              <div class="gift-card-preview__label">Gift card value</div>
+              <div class="gift-card-preview__amount">50 €</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="product__info">
+          <div class="product__brand-row">
+            <span class="product__brand-logo">TTM-STORE</span>
+            <span class="product__brand-sep">·</span>
+            <span>Gutschein (Gift Card)</span>
+          </div>
+          <h1 class="product__title">TTM-Store Gift Card</h1>
+          <div class="product__rating-row">
+            <span class="product__stars">★★★★★</span>
+            <span>5.0</span>
+            <a href="#reviews" class="product__rating-link">23 reviews</a>
+          </div>
+
+          <div class="product__price-row">
+            <span class="product__price">50.00 €</span>
+          </div>
+          <div class="product__price-tax">Delivered by email · No expiry date</div>
+
+          <!-- VARIANT 1: Amount -->
+          <div class="variant-group">
+            <div class="variant-group__label">
+              <span>Wert (Value)</span>
+              <span class="variant-group__selected">50 €</span>
+            </div>
+            <div class="gift-card-amounts">
+              <button class="variant-option">25 €</button>
+              <button class="variant-option is-active">50 €</button>
+              <button class="variant-option">100 €</button>
+              <button class="variant-option">150 €</button>
+              <button class="variant-option">250 €</button>
+            </div>
+          </div>
+
+          <div class="variant-group">
+            <div class="variant-group__label">
+              <span>Persönliche Nachricht (Optional message)</span>
+            </div>
+            <textarea class="gift-card-message" placeholder="Add a personal message — included in the email to the recipient"></textarea>
+          </div>
+
+          <div class="product__buy-row">
+            <div class="qty-select">
+              <button>−</button>
+              <input type="text" value="1">
+              <button>+</button>
+            </div>
+            <button class="btn btn--primary btn--full">Send gift card</button>
+          </div>
+
+          <div class="product__shipping">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2Z"/><polyline points="22 6 12 13 2 6"/></svg>
+            <div>
+              <strong>Delivered by email</strong> · Choose when the recipient receives it (today or a future date)
+            </div>
+          </div>
+
+          <div class="product__trust">
+            <div class="product__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              No expiry date
+            </div>
+            <div class="product__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Use on everything
+            </div>
+            <div class="product__trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+              Combinable
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product__details">
+    <div class="product__details-inner">
+      <div class="product__description" style="grid-column: 1 / -1;">
+        <h3>How it works</h3>
+        <ul>
+          <li>Choose the value, add a message, and select a delivery date.</li>
+          <li>The recipient gets an email with the gift card code on the date you picked.</li>
+          <li>They enter the code at checkout. Any unused balance stays on the card.</li>
+          <li>Gift cards work on everything in the store, including sale items.</li>
+          <li>No expiry date. No fees. No tracking.</li>
+        </ul>
+        <h3>FAQ</h3>
+        <p><strong>Can I print it?</strong> Yes, the recipient's email contains a printable version of the card.</p>
+        <p><strong>Can I use part of it now and the rest later?</strong> Yes, the balance stays on the card until it's used up.</p>
+        <p><strong>What if my recipient never uses it?</strong> Gift cards don't expire. They'll still be valid years later.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+  // Template switcher
+  document.querySelectorAll('.template-switcher__tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.template;
+      document.querySelectorAll('.template-switcher__tab').forEach(t => t.classList.remove('is-active'));
+      tab.classList.add('is-active');
+      document.querySelectorAll('.template').forEach(t => t.classList.remove('is-active'));
+      document.getElementById('t-' + target).classList.add('is-active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq__item').forEach(item => {
+    const q = item.querySelector('.faq__q');
+    q.addEventListener('click', () => item.classList.toggle('is-open'));
+  });
+
+  // Variant option click (visual demo only)
+  document.querySelectorAll('.variant-options').forEach(group => {
+    group.addEventListener('click', e => {
+      if (e.target.classList.contains('variant-option') && !e.target.classList.contains('is-unavailable')) {
+        group.querySelectorAll('.variant-option').forEach(o => o.classList.remove('is-active'));
+        e.target.classList.add('is-active');
+      }
+    });
+  });
+
+  // Qty select
+  document.querySelectorAll('.qty-select').forEach(group => {
+    const input = group.querySelector('input');
+    const buttons = group.querySelectorAll('button');
+    buttons[0].addEventListener('click', () => {
+      const v = parseInt(input.value) || 1;
+      input.value = Math.max(1, v - 1);
+    });
+    buttons[1].addEventListener('click', () => {
+      const v = parseInt(input.value) || 1;
+      input.value = v + 1;
+    });
+  });
+</script>
+
+</body>
+</html>
