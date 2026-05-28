@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ═══════════════════════════════════════════
+     SHOPIFY TEMPLATE TARGET: page.landing-meta.json
+     PURPOSE: Facebook ad traffic, mobile-first, single-decision page.
+     CURRENT CAMPAIGN: Nexy Etika + Etika Pro 47 (two-tier rubber range)
+     STRUCTURE: Hero → Trust strip → Why this rubber → Comparison (2 products) → Testimonial → FAQ → CTA
+     ═══════════════════════════════════════════ -->
+
+<!-- SEO: page meta -->
+<title>Nexy Etika & Etika Pro 47 — Tischtennis-Belag im Vergleich | TTM-Store</title>
+<meta name="description" content="Nexy Etika und Etika Pro 47: zwei Beläge, ein System. Beratung von echten Spielern. Versand aus Deutschland, kostenlos ab 69 €.">
+<meta property="og:title" content="Nexy Etika & Etika Pro 47 — Belag-Range bei TTM-Store">
+<meta property="og:type" content="product">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --teal: #1f5d5e;
+  --teal-dark: #134445;
+  --cream: #f6f4ee;
+  --orange: #e8622a;
+  --orange-dark: #d1551f;
+  --dark: #0f2a2a;
+  --text: #1a2424;
+  --text-muted: #5a6868;
+  --border: #e2dfd6;
+  --white: #ffffff;
+
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --container: 1280px;
+  --section-y: clamp(3.5rem, 7vw, 6rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+@media (min-width: 768px) { .container { padding: 0 2rem; } }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+  color: var(--text);
+}
+.h-hero  { font-size: clamp(2.25rem, 6vw, 4rem); }
+.h-lg    { font-size: clamp(1.875rem, 4vw, 2.5rem); }
+.h-md    { font-size: clamp(1.375rem, 2.5vw, 1.75rem); }
+.eyebrow {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--orange);
+}
+
+/* ─── Minimal header (landing page = reduced nav) ────── */
+.lp-header {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0.875rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.lp-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--teal);
+  letter-spacing: 0.02em;
+}
+.logo span { color: var(--orange); }
+.lp-header__right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+.lp-header__right svg { width: 22px; height: 22px; color: var(--text); }
+.lp-header__phone { display: none; }
+@media (min-width: 600px) {
+  .lp-header__phone { display: inline; }
+}
+
+/* ─── Buttons ────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.75rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+  min-height: 52px;
+}
+.btn--orange { background: var(--orange); color: var(--white); }
+.btn--orange:hover { background: var(--orange-dark); }
+.btn--teal { background: var(--teal); color: var(--white); }
+.btn--teal:hover { background: var(--teal-dark); }
+.btn--ghost-white { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.4); }
+.btn--ghost-white:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+.btn--full { width: 100%; }
+.btn--lg { padding: 1.125rem 2rem; font-size: 1.0625rem; min-height: 58px; }
+
+/* ─── HERO ───────────────────────────────────────────── */
+.hero {
+  background: var(--teal);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 0;
+}
+@media (min-width: 900px) {
+  .hero__grid { grid-template-columns: 1.05fr 1fr; min-height: 560px; }
+}
+.hero__content {
+  padding: 3rem 1.25rem 2.5rem;
+}
+@media (min-width: 768px) {
+  .hero__content { padding: 4.5rem 2rem; }
+}
+@media (min-width: 1100px) {
+  .hero__content { padding: 5rem 4rem 5rem 0; max-width: 620px; margin-left: auto; padding-left: 2rem; }
+}
+.hero__eyebrow {
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  color: var(--white);
+  margin-bottom: 1.25rem;
+}
+
+.hero__lead {
+  font-size: 1.0625rem;
+  color: rgba(255,255,255,0.88);
+  max-width: 520px;
+  margin-bottom: 2rem;
+}
+
+.hero__quickspecs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.875rem 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.hero__spec {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+.hero__spec-label {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.hero__spec-value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--white);
+}
+
+.hero__price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.hero__price-label {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.6);
+}
+.hero__price {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2rem;
+  color: var(--white);
+  line-height: 1;
+}
+
+.hero__ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+@media (min-width: 540px) {
+  .hero__ctas { flex-direction: row; }
+}
+
+.hero__image {
+  background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 100%);
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: rgba(255,255,255,0.45);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.875rem;
+  text-align: center;
+  padding: 2rem;
+  border-left: 1px solid rgba(255,255,255,0.08);
+}
+@media (min-width: 900px) {
+  .hero__image { min-height: 100%; }
+}
+.placeholder-label {
+  display: block;
+  font-size: 0.6875rem;
+  opacity: 0.7;
+  margin-top: 0.5rem;
+  letter-spacing: 0.12em;
+}
+
+/* ─── TRUST STRIP ────────────────────────────────────── */
+.trust-strip {
+  background: var(--cream);
+  border-bottom: 1px solid var(--border);
+  padding: 1.25rem 0;
+}
+.trust-strip__inner {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .trust-strip__inner { grid-template-columns: repeat(4, 1fr); }
+}
+.trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text);
+  font-weight: 500;
+}
+.trust-item svg { width: 22px; height: 22px; color: var(--teal); }
+.trust-item strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.trust-item span {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ─── Generic section ────────────────────────────────── */
+section { padding: var(--section-y) 0; }
+.section-cream { background: var(--cream); }
+.section-dark { background: var(--dark); color: var(--white); }
+.section-dark h2 { color: var(--white); }
+
+.section-head {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 3rem;
+}
+.section-head h2 { margin-bottom: 0.875rem; }
+.section-head p {
+  color: var(--text-muted);
+  font-size: 1.0625rem;
+}
+
+/* ─── WHY THIS RUBBER ────────────────────────────────── */
+.benefits {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+@media (min-width: 768px) {
+  .benefits { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+}
+.benefit {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 2rem 1.75rem;
+  position: relative;
+}
+.benefit__num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2.5rem;
+  color: var(--orange);
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+.benefit h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.625rem;
+}
+.benefit p {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+/* ─── PRODUCT COMPARISON (two products side by side) ── */
+.compare {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 900px) {
+  .compare { grid-template-columns: 1fr 1fr; gap: 1.75rem; }
+}
+.product-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.product-card:hover {
+  border-color: var(--teal);
+}
+.product-card--featured {
+  border-color: var(--orange);
+  border-width: 2px;
+}
+.product-card__ribbon {
+  position: absolute;
+  top: 1rem;
+  right: 0;
+  background: var(--orange);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  padding: 0.375rem 0.875rem;
+}
+.product-card__image {
+  background: var(--cream);
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8125rem;
+  text-align: center;
+  padding: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.product-card__body {
+  padding: 1.75rem 1.75rem 2rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.product-card__brand {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  margin-bottom: 0.375rem;
+}
+.product-card__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.75rem;
+}
+.product-card__tagline {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.product-card__specs {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.product-card__specs li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.625rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.875rem;
+}
+.product-card__specs li span:first-child {
+  color: var(--text-muted);
+}
+.product-card__specs li span:last-child {
+  color: var(--text);
+  font-weight: 600;
+}
+.product-card__specs li strong {
+  color: var(--teal);
+  font-weight: 700;
+}
+
+.product-card__bottom {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.product-card__price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.625rem;
+}
+.product-card__price {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.875rem;
+  color: var(--text);
+  line-height: 1;
+}
+.product-card__price-note {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* "For who" callout under the comparison */
+.who-bar {
+  background: var(--dark);
+  color: var(--white);
+  padding: 2rem;
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  .who-bar { grid-template-columns: 1fr 1fr; }
+}
+.who-bar__col h4 {
+  color: var(--white);
+  font-size: 1.0625rem;
+  margin-bottom: 0.5rem;
+}
+.who-bar__col h4 span {
+  color: var(--orange);
+}
+.who-bar__col p {
+  color: rgba(255,255,255,0.75);
+  font-size: 0.9375rem;
+}
+
+/* ─── TESTIMONIAL ────────────────────────────────────── */
+.testimonial {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+}
+.testimonial__quote {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 3.5vw, 2.125rem);
+  line-height: 1.25;
+  color: var(--text);
+  margin-bottom: 2rem;
+  letter-spacing: 0.005em;
+}
+.testimonial__quote::before {
+  content: "„";
+  font-size: 1.4em;
+  color: var(--orange);
+  line-height: 0;
+  vertical-align: -0.05em;
+  margin-right: 0.1em;
+}
+.testimonial__quote::after {
+  content: "\u201C";
+  font-size: 1.4em;
+  color: var(--orange);
+  line-height: 0;
+  vertical-align: -0.05em;
+}
+.testimonial__author {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+.testimonial__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.testimonial__role {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+/* ─── FAQ ────────────────────────────────────────────── */
+.faq {
+  max-width: 820px;
+  margin: 0 auto;
+}
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+.faq-item:first-child { border-top: 1px solid var(--border); }
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 1.5rem 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "+";
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1.75rem;
+  color: var(--orange);
+  flex-shrink: 0;
+  transition: transform 0.2s;
+  line-height: 1;
+}
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item__body {
+  padding: 0 0 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  max-width: 680px;
+}
+
+/* ─── FINAL CTA ──────────────────────────────────────── */
+.final-cta {
+  background: var(--teal);
+  color: var(--white);
+  text-align: center;
+}
+.final-cta h2 { color: var(--white); margin-bottom: 1rem; }
+.final-cta p {
+  color: rgba(255,255,255,0.85);
+  font-size: 1.0625rem;
+  max-width: 580px;
+  margin: 0 auto 2rem;
+}
+.final-cta__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  align-items: center;
+}
+@media (min-width: 540px) {
+  .final-cta__buttons { flex-direction: row; justify-content: center; }
+}
+
+/* ─── Minimal footer (landing page = reduced) ────────── */
+.lp-footer {
+  background: var(--dark);
+  color: rgba(255,255,255,0.6);
+  padding: 2rem 0;
+  text-align: center;
+  font-size: 0.8125rem;
+}
+.lp-footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .lp-footer__inner { flex-direction: row; justify-content: space-between; }
+}
+.lp-footer__links {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.lp-footer__links a:hover { color: var(--white); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     MINIMAL HEADER — landing page only
+     Removed: utility bar, category nav, full action set
+     Kept: logo, support phone, cart. No way to wander off into the catalogue.
+     ═══════════════════════════════════════════ -->
+<header class="lp-header">
+  <div class="container lp-header__inner">
+    <a href="/" class="logo">TTM<span>·</span>Store</a>
+    <div class="lp-header__right">
+      <span class="lp-header__phone">Beratung: persönlich · DE-Versand</span>
+      <a href="#" aria-label="Warenkorb">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+     SWAPPABLE (Shopify schema fields when converted):
+       - hero_eyebrow (text)
+       - hero_headline (richtext, 2-line)
+       - hero_subhead (text)
+       - hero_image (image_picker)
+       - hero_price_label (text, e.g. "Ab")
+       - hero_price (text, e.g. "39,90 €")
+       - hero_cta_primary_label + link
+       - hero_cta_secondary_label + link
+       - hero_specs: repeatable block (label + value), max 4
+     ═══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero__grid">
+      <div class="hero__content">
+        <div class="eyebrow hero__eyebrow">Nexy Etika · Belag-Range</div>
+
+        <h1 class="h-hero">Zwei Härten.<br>Ein Belag-System.</h1>
+
+        <p class="hero__lead">Der Nexy Etika ist für Spieler, die Kontrolle wollen, ohne Tempo zu verlieren. Den Pro 47 nimmt, wer mehr Druck im Topspin sucht. Gleicher Aufbau, zwei Härtegrade — und beide kommen direkt aus Korea.</p>
+
+        <div class="hero__quickspecs">
+          <div class="hero__spec">
+            <span class="hero__spec-label">Spielstrategie</span>
+            <span class="hero__spec-value">Angriff / Allround</span>
+          </div>
+          <div class="hero__spec">
+            <span class="hero__spec-label">Belag-Typ</span>
+            <span class="hero__spec-value">Noppen innen</span>
+          </div>
+          <div class="hero__spec">
+            <span class="hero__spec-label">ITTF</span>
+            <span class="hero__spec-value">Zugelassen</span>
+          </div>
+        </div>
+
+        <div class="hero__price-row">
+          <span class="hero__price-label">Ab</span>
+          <span class="hero__price">39,90 €</span>
+          <span class="hero__price-label">· kostenloser Versand ab 69 €</span>
+        </div>
+
+        <div class="hero__ctas">
+          <a href="#vergleich" class="btn btn--orange btn--lg">Beide vergleichen</a>
+          <a href="#faq" class="btn btn--ghost-white">Häufige Fragen</a>
+        </div>
+      </div>
+
+      <div class="hero__image">
+        Produktfoto: Nexy Etika &amp; Etika Pro 47 nebeneinander
+        <span class="placeholder-label">Querformat, vor cremefarbenem Hintergrund</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TRUST STRIP
+     SWAPPABLE: 4 trust items (icon + heading + sub)
+     Repeatable block, max 4. Empty blocks hide.
+     ═══════════════════════════════════════════ -->
+<section class="trust-strip">
+  <div class="container">
+    <div class="trust-strip__inner">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        <strong>Aus Deutschland</strong>
+        <span>Versand binnen 24h</span>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <strong>Echte Spieler</strong>
+        <span>Beratung, kein Skript</span>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12c-1.5 5-6.5 8-10.5 7.5C5.5 19 1.5 14.5 3 9.5"/><path d="m3 12 3-3 3 3"/></svg>
+        <strong>30 Tage Rückgabe</strong>
+        <span>Unbespielt, einfach zurück</span>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 10h20"/></svg>
+        <strong>Sicher zahlen</strong>
+        <span>PayPal · Klarna · Visa</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     WHY THIS PRODUCT — 3 benefit cards
+     SWAPPABLE: repeatable block (number + heading + body), max 3
+     ═══════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow" style="color: var(--teal); margin-bottom: 0.875rem;">Warum dieser Belag</div>
+      <h2 class="h-lg">Drei Gründe, warum wir den Etika empfehlen.</h2>
+      <p>Wir verkaufen nicht alles. Was bei uns ins Sortiment kommt, haben wir oder Spieler aus unserem Umfeld selbst gespielt.</p>
+    </div>
+
+    <div class="benefits">
+      <div class="benefit">
+        <div class="benefit__num">01</div>
+        <h3>Kontrolle ohne Bremse</h3>
+        <p>Der Etika gibt Ihnen ein klares Trefferfeedback, ohne dabei Tempo zu schlucken. Ideal für Spieler im Aufbau, die noch an ihrer Sicherheit arbeiten, aber nicht in der Anfänger-Klasse stecken bleiben wollen.</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit__num">02</div>
+        <h3>Spin aus dem Stand</h3>
+        <p>Die halbgriffige Oberfläche greift bei Schnittbällen direkt, ohne dass Sie mit voller Kraft durchziehen müssen. Das gibt Topspins eine ehrliche Rotation, auch wenn der Schlag noch nicht perfekt sitzt.</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit__num">03</div>
+        <h3>Zwei Härten, ein System</h3>
+        <p>Etika und Etika Pro 47 sind aus der gleichen Familie. Wer den weicheren Etika lange gespielt hat und mehr Druck will, wechselt zum Pro 47, ohne sich neu umzustellen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PRODUCT COMPARISON
+     SWAPPABLE in Shopify:
+       - product_1_reference (product_picker)
+       - product_1_tagline (text)
+       - product_1_ribbon (text, e.g. "Bestseller" — optional)
+       - product_1_spec_rows (repeatable: label + value)
+       - product_2_reference (product_picker)
+       - product_2_tagline (text)
+       - product_2_ribbon (text)
+       - product_2_spec_rows (repeatable: label + value)
+       - who_bar_left_title + body (text + text)
+       - who_bar_right_title + body (text + text)
+     For single-product variant of this template: hide product_2 block via section setting.
+     ═══════════════════════════════════════════ -->
+<section class="section-cream" id="vergleich">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow" style="color: var(--teal); margin-bottom: 0.875rem;">Die zwei Versionen</div>
+      <h2 class="h-lg">Welcher Etika passt zu Ihnen?</h2>
+      <p>Gleicher Aufbau, gleiche Oberfläche, gleiche Spielphilosophie. Der Unterschied liegt im Schwamm.</p>
+    </div>
+
+    <div class="compare">
+      <!-- Product 1: Nexy Etika -->
+      <article class="product-card">
+        <div class="product-card__ribbon" style="background: var(--teal);">Empfohlen für Aufbauer</div>
+        <div class="product-card__image">
+          Produktfoto: Nexy Etika (rot, Verpackung sichtbar)
+          <span class="placeholder-label">Quadratisch, cremefarbener Hintergrund</span>
+        </div>
+        <div class="product-card__body">
+          <div class="product-card__brand">Nexy</div>
+          <div class="product-card__name">Etika</div>
+          <p class="product-card__tagline">Der weichere Schwamm. Gibt Ihnen Sicherheit beim Block und Topspin, ohne zu sehr nachzugeben.</p>
+
+          <ul class="product-card__specs">
+            <li><span>Schwammhärte</span><span><strong>45°</strong> · Mittel</span></li>
+            <li><span>Geschwindigkeit</span><span>Mittel-hoch</span></li>
+            <li><span>Spin</span><span>Hoch</span></li>
+            <li><span>Kontrolle</span><span>Sehr hoch</span></li>
+            <li><span>Oberfläche</span><span>Halbgriffig</span></li>
+            <li><span>Verfügbare Stärken</span><span>1.8 · 2.0 · max</span></li>
+          </ul>
+
+          <div class="product-card__bottom">
+            <div class="product-card__price-row">
+              <span class="product-card__price">39,90 €</span>
+              <span class="product-card__price-note">inkl. MwSt · Farbe wählbar</span>
+            </div>
+            <a href="#" class="btn btn--teal btn--full">Etika auswählen</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 2: Nexy Etika Pro 47 -->
+      <article class="product-card product-card--featured">
+        <div class="product-card__ribbon">Mehr Druck</div>
+        <div class="product-card__image">
+          Produktfoto: Nexy Etika Pro 47 (rot, Verpackung sichtbar)
+          <span class="placeholder-label">Quadratisch, cremefarbener Hintergrund</span>
+        </div>
+        <div class="product-card__body">
+          <div class="product-card__brand">Nexy</div>
+          <div class="product-card__name">Etika Pro 47</div>
+          <p class="product-card__tagline">Härterer Schwamm, mehr Druck beim Topspin. Für Spieler, die den Etika kennen und jetzt mehr wollen.</p>
+
+          <ul class="product-card__specs">
+            <li><span>Schwammhärte</span><span><strong>47,5°</strong> · Mittelhart</span></li>
+            <li><span>Geschwindigkeit</span><span>Hoch</span></li>
+            <li><span>Spin</span><span>Sehr hoch</span></li>
+            <li><span>Kontrolle</span><span>Hoch</span></li>
+            <li><span>Oberfläche</span><span>Halbgriffig</span></li>
+            <li><span>Verfügbare Stärken</span><span>2.0 · 2.1 · max</span></li>
+          </ul>
+
+          <div class="product-card__bottom">
+            <div class="product-card__price-row">
+              <span class="product-card__price">44,90 €</span>
+              <span class="product-card__price-note">inkl. MwSt · Farbe wählbar</span>
+            </div>
+            <a href="#" class="btn btn--orange btn--full">Etika Pro 47 auswählen</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Who-is-it-for bar -->
+    <div class="who-bar">
+      <div class="who-bar__col">
+        <h4>Etika ist richtig, wenn <span>Sie noch an Sicherheit arbeiten.</span></h4>
+        <p>Sie spielen in der unteren bis mittleren Vereinsliga, trainieren regelmäßig und wollen einen Belag, der Ihre Fehler nicht bestraft, aber Sie trotzdem schneller macht.</p>
+      </div>
+      <div class="who-bar__col">
+        <h4>Pro 47 ist richtig, wenn <span>Ihr Topspin schon sitzt.</span></h4>
+        <p>Sie spielen offensiv, ziehen sauber durch und merken, dass weichere Beläge bei Ihnen Tempo verschenken. Der Pro 47 gibt das zurück, ohne den Kontroll-Charakter zu verlieren.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TESTIMONIAL
+     SWAPPABLE: quote (richtext), author_name (text), author_role (text)
+     IMPORTANT: only use real testimonials. Empty = section hides.
+     ═══════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="testimonial">
+      <p class="testimonial__quote">Den Etika spiele ich seit über einem Jahr. Was ich an dem Belag mag: er gibt mir Rückmeldung, was ich falsch mache, ohne mich gleich zu bestrafen. Den Pro 47 habe ich für die Vorhand getestet und bin überrascht, wie viel direkter der ist, ohne dass ich neu lernen musste.</p>
+      <div class="testimonial__author">
+        <div class="testimonial__name">Markus K.</div>
+        <div class="testimonial__role">Bezirksliga · Stammkunde seit 2023</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FAQ
+     SWAPPABLE: repeatable blocks (question + answer richtext), 3-8 ideal
+     Targets common Facebook ad objections: shipping, returns, sizing, "is this for me"
+     ═══════════════════════════════════════════ -->
+<section class="section-cream" id="faq">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow" style="color: var(--teal); margin-bottom: 0.875rem;">Häufige Fragen</div>
+      <h2 class="h-lg">Was Sie vor dem Kauf wissen sollten.</h2>
+    </div>
+
+    <div class="faq">
+      <details class="faq-item">
+        <summary>Welcher der beiden Beläge ist für mich richtig?</summary>
+        <div class="faq-item__body">
+          Faustregel: Wenn Sie in der Kreis- oder Bezirksliga spielen und an Ihrer Schlagsicherheit arbeiten, nehmen Sie den Etika. Wenn Sie offensiv spielen, sauber durchziehen und mehr Druck im Topspin wollen, nehmen Sie den Pro 47. Wenn Sie unsicher sind: schreiben Sie uns kurz, was Sie spielen und wie oft. Damir oder Lukas antworten persönlich.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Wie schnell ist der Versand?</summary>
+        <div class="faq-item__body">
+          Wir versenden aus Deutschland mit DHL. Bei Bestellung bis 14 Uhr werktags geht das Paket noch am gleichen Tag raus. Lieferzeit innerhalb Deutschlands: 1-2 Werktage. Versand ab 69 € Bestellwert kostenlos.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Welche Schwammstärke soll ich wählen?</summary>
+        <div class="faq-item__body">
+          Standard für die meisten Spieler: 2.0 mm. Für mehr Kontrolle und etwas weniger Tempo: 1.8 mm. Für maximales Tempo und Spin (typisch für Offensivspieler): max. Wenn Sie aktuell schon einen Belag spielen, nehmen Sie die gleiche Stärke wie bisher. Wenn unklar, fragen Sie uns.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Kann ich die Beläge zurückschicken, wenn sie nicht passen?</summary>
+        <div class="faq-item__body">
+          Ja, innerhalb von 30 Tagen, solange der Belag unbespielt und ungeklebt ist. Sobald ein Belag aufs Holz geklebt war, ist eine Rückgabe rechtlich nicht mehr möglich, das gilt für jeden Händler. Genau deshalb beraten wir lieber vorher kurz.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Klebt ihr den Belag aufs Holz?</summary>
+        <div class="faq-item__body">
+          Nein, wir verkaufen den Belag ungeklebt. Das ist Standard im Tischtennis: jeder Spieler entscheidet selbst, ob er klebt oder klebt und nachklebt, und welcher Kleber dazu verwendet wird. Geeigneten Tischtennis-Kleber finden Sie bei uns unter Zubehör.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Sind die Beläge ITTF-zugelassen?</summary>
+        <div class="faq-item__body">
+          Ja, beide Versionen (Etika und Etika Pro 47) sind ITTF-zugelassen und damit turnierlegal. Sie können sie ohne Probleme im Vereins- und Verbandsspielbetrieb einsetzen.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FINAL CTA — repeat of hero CTA, slightly different framing
+     SWAPPABLE: headline, subhead, primary CTA, secondary CTA
+     ═══════════════════════════════════════════ -->
+<section class="final-cta">
+  <div class="container">
+    <h2 class="h-lg">Bestellen Sie heute. Wir versenden noch heute.</h2>
+    <p>Bestellungen bis 14 Uhr gehen am gleichen Tag raus. Wenn Sie sich nicht sicher sind, welcher Etika für Sie passt, fragen Sie kurz nach. Wir antworten persönlich.</p>
+    <div class="final-cta__buttons">
+      <a href="#vergleich" class="btn btn--orange btn--lg">Zum Vergleich zurück</a>
+      <a href="#" class="btn btn--ghost-white">Beratung anfragen</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     MINIMAL FOOTER — only legal + back-to-shop
+     No main nav: this is a landing page.
+     ═══════════════════════════════════════════ -->
+<footer class="lp-footer">
+  <div class="container lp-footer__inner">
+    <div>© 2026 TTM-Store · Damir &amp; Lukas Solaja</div>
+    <div class="lp-footer__links">
+      <a href="#">Impressum</a>
+      <a href="#">Datenschutz</a>
+      <a href="#">AGB</a>
+      <a href="#">Widerrufsrecht</a>
+      <a href="#">Kontakt</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
